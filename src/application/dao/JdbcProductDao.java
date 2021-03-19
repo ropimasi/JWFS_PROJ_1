@@ -1,34 +1,42 @@
 package application.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import application.connection.SingletonConnection;
 import application.entity.ProductEntity;
 
+
+
 public class JdbcProductDao {
-
+	
 	private static Connection conn;
-
+	
 	
 	
 	public JdbcProductDao() {
-		conn = SingletonConnection.getConnection();
-	}
-
 		
+		conn = SingletonConnection.getConnection();
+		System.out.println();
+		
+	}
+	
+	
 	
 	public List<ProductEntity> list() {
+		
 		List<ProductEntity> returnList = new ArrayList<ProductEntity>();
 		String sqlList = "SELECT * FROM products ORDER BY id ASC;";
 		ResultSet rsList = null;
+		
 		try {
 			PreparedStatement sttmntList = conn.prepareStatement(sqlList);
 			rsList = sttmntList.executeQuery();
+			
 			while (rsList.next()) {
 				ProductEntity tmpProduct = new ProductEntity();
 				tmpProduct.setId(rsList.getString("id"));
@@ -38,24 +46,32 @@ public class JdbcProductDao {
 				tmpProduct.setStockQtty(rsList.getFloat("stock_qtty"));
 				returnList.add(tmpProduct);
 			}
-		} catch (SQLException sqlExcep) {
+			
+		}
+		catch (SQLException sqlExcep) {
 			sqlExcep.printStackTrace();
 			return null;
-		} catch (Exception allExcep) {
+		}
+		catch (Exception allExcep) {
 			allExcep.printStackTrace();
 			return null;
 		}
+		
 		return returnList;
+		
 	}
-
+	
 	
 	
 	public ProductEntity seekId(long id) {
+		
 		String sqlSeekId = "SELECT * FROM products WHERE (id = " + id + ");";
 		ResultSet rsSeekId = null;
+		
 		try {
 			PreparedStatement sttmntSeek = conn.prepareStatement(sqlSeekId);
 			rsSeekId = sttmntSeek.executeQuery();
+			
 			if (rsSeekId.next()) {
 				ProductEntity returnProduct = new ProductEntity();
 				returnProduct.setId(rsSeekId.getLong("id"));
@@ -65,24 +81,32 @@ public class JdbcProductDao {
 				returnProduct.setStockQtty(rsSeekId.getFloat("stock_qtty"));
 				return returnProduct;
 			}
-		} catch (SQLException sqlExcep) {
+			
+		}
+		catch (SQLException sqlExcep) {
 			sqlExcep.printStackTrace();
 			return null;
-		} catch (Exception allExcep) {
+		}
+		catch (Exception allExcep) {
 			allExcep.printStackTrace();
 			return null;
 		}
+		
 		return null;
+		
 	}
-
+	
 	
 	
 	public ProductEntity seekProductName(String soughtProductName) {
+		
 		String sqlSeekProductName = "SELECT * FROM products WHERE (name = '" + soughtProductName + "');";
 		ResultSet rsSeekProductName = null;
+		
 		try {
 			PreparedStatement sttmntSeek = conn.prepareStatement(sqlSeekProductName);
 			rsSeekProductName = sttmntSeek.executeQuery();
+			
 			if (rsSeekProductName.next()) {
 				ProductEntity returnProduct = new ProductEntity();
 				returnProduct.setId(rsSeekProductName.getLong("id"));
@@ -91,35 +115,45 @@ public class JdbcProductDao {
 				returnProduct.setSalePrice(rsSeekProductName.getBigDecimal("sale_price"));
 				returnProduct.setStockQtty(rsSeekProductName.getFloat("email"));
 				return returnProduct;
-			} else {
+			}
+			else {
 				return null;
 			}
-		} catch (SQLException sqlExcep) {
+			
+		}
+		catch (SQLException sqlExcep) {
 			sqlExcep.printStackTrace();
 			return null;
-		} catch (Exception allExcep) {
+		}
+		catch (Exception allExcep) {
 			allExcep.printStackTrace();
 			return null;
 		}
+		
 	}
-
+	
 	
 	
 	public void save(ProductEntity product) {
+		
 		/* According 'View-layer' sent inputs, the servlet sends the 'product' object as argument,
 		 * witch will always be '0' in 'id' attribute for 'add new' registering, and will be some 'id'
 		 * value else '0' when in 'editing' saving. */
 		if (product.getId() == 0) {
 			insert(product); // insert new user.
-		} else {
+		}
+		else {
 			update(product); // update existing user.
 		}
+		
 	}
-
-
-
+	
+	
+	
 	public void insert(ProductEntity product) {
+		
 		String sqlInsert = "INSERT INTO products (name, purchase_price, sale_price, stock_qtty) VALUES (?, ?, ?, ?);";
+		
 		try {
 			PreparedStatement sttmntInsert = conn.prepareStatement(sqlInsert);
 			sttmntInsert.setString(1, product.getName());
@@ -128,22 +162,30 @@ public class JdbcProductDao {
 			sttmntInsert.setFloat(4, product.getStockQtty());
 			sttmntInsert.execute();
 			conn.commit();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.out.println("Error in JdbcProductDao.Insert() > [PreparedStatement];");
+			
 			try {
 				conn.rollback();
-			} catch (SQLException e1) {
+			}
+			catch (SQLException e1) {
 				System.out.println("Error in JdbcProductDao.Insert() > [PreparedStatement]-catch > conn.rollback;");
 				e1.printStackTrace();
 			}
+			
 			e.printStackTrace();
 		}
+		
 	}
-
-
-
+	
+	
+	
 	public void update(ProductEntity product) {
-		String sqlUpdate = "UPDATE products SET name = ?, purchase_price = ?, sale_price = ?, stock_qtty = ? WHERE (id = ?);";
+		
+		String sqlUpdate =
+				"UPDATE products SET name = ?, purchase_price = ?, sale_price = ?, stock_qtty = ? WHERE (id = ?);";
+		
 		try {
 			PreparedStatement sttmntUpdate = conn.prepareStatement(sqlUpdate);
 			sttmntUpdate.setString(1, product.getName());
@@ -153,36 +195,49 @@ public class JdbcProductDao {
 			sttmntUpdate.setLong(5, product.getId());
 			sttmntUpdate.executeUpdate();
 			conn.commit();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.out.println("Error in JdbcProductDao.update() > [PreparedStatement];");
+			
 			try {
 				conn.rollback();
-			} catch (SQLException e1) {
+			}
+			catch (SQLException e1) {
 				System.out.println("Error in JdbcProductDao.update() > [PreparedStatement]-catch > conn.rollback;");
 				e1.printStackTrace();
 			}
+			
 			e.printStackTrace();
 		}
+		
 	}
-
+	
 	
 	
 	public void exclude(long id) {
+		
 		String sqlExclude = "DELETE FROM products WHERE (id = ?);";
+		
 		try {
 			PreparedStatement sttmntExclude = conn.prepareStatement(sqlExclude);
 			sttmntExclude.setLong(1, id);
 			sttmntExclude.execute();
 			conn.commit();
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			System.out.println("Error in JdbcProductDao.exclude() > [PreparedStatement];");
+			
 			try {
 				conn.rollback();
-			} catch (SQLException e1) {
+			}
+			catch (SQLException e1) {
 				System.out.println("Error in JdbcProductDao.exclude() > [PreparedStatement]-catch > conn.rollback;");
 				e1.printStackTrace();
 			}
+			
 			e.printStackTrace();
 		}
+		
 	}
+	
 }

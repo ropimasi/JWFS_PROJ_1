@@ -9,7 +9,6 @@ import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 
 
-
 public class UserFullDTO {
 	
 	/* Private Class' attributes: */
@@ -40,6 +39,8 @@ public class UserFullDTO {
 	
 	// Overload.
 	public void setId(String strId) {
+		
+		System.out.println();
 		
 		if ((!strId.trim().equalsIgnoreCase("")) && (!strId.trim().isEmpty()) && (strId != null)) {
 			
@@ -181,6 +182,7 @@ public class UserFullDTO {
 	
 	// Overload.
 	public void setPictureBase64(String userPictureBase64String) {
+		
 		this.pictureBase64 = userPictureBase64String;
 		
 		/* String tmpStr = userPictureStringBase64.split(";base64,")[0];
@@ -196,4 +198,5 @@ public class UserFullDTO {
 	
 	
 	public void setPictureContentType(String pictureContentType) { this.pictureContentType = pictureContentType; }
+	
 }

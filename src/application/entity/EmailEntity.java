@@ -29,6 +29,8 @@ public class EmailEntity {
 	// Overload.
 	public void setId(String strId) {
 		
+		System.out.println();
+		
 		if ((!strId.equalsIgnoreCase("")) && (!strId.equalsIgnoreCase(" ")) && (strId != null)) {
 			
 			try {
@@ -88,18 +90,21 @@ public class EmailEntity {
 	
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((this.eAddress == null) ? 0 : this.eAddress.hashCode());
 		result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
 		result = prime * result + (int) (this.userId ^ (this.userId >>> 32));
 		return result;
+		
 	}
 	
 	
 	
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj) return true;
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
@@ -117,12 +122,16 @@ public class EmailEntity {
 		
 		if (this.userId != other.userId) return false;
 		return true;
+		
 	}
 	
 	
 	
 	@Override
 	public String toString() {
+		
 		return "EmailEntity [id=" + this.id + ", eAddress=" + this.eAddress + ", userId=" + this.userId + "]";
+		
 	}
+	
 }

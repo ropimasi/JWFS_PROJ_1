@@ -6,9 +6,10 @@ import application.entity.dto.UserCompactDTO;
 
 
 
-
-public abstract class ObjectTypeConversion {
+public abstract class DTOConversion {
+	
 	public static UserCompactDTO userCompactDTOFactoryFrom(UserEntity uE) {
+		
 		// No reflexion. Using pattern Factory.
 		UserCompactDTO returnObj = new UserCompactDTO();
 		returnObj.setId(uE.getId());
@@ -18,12 +19,15 @@ public abstract class ObjectTypeConversion {
 		returnObj.setPictureBase64(uE.getPictureBase64String());
 		returnObj.setPictureContentType(uE.getPictureContentType());
 		return returnObj;
+		
 	}
 	
 	
 	
 	public static void convert(Object oFrom, Object oTo) {
+		
 		// Using reflexion.
 		// Further implementation.
 	}
+	
 }

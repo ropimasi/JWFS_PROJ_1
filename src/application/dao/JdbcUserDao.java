@@ -13,19 +13,23 @@ import application.service.SymmCrypSamp;
 
 
 
-
 public class JdbcUserDao {
+	
 	private static Connection conn;
 	
 	
 	
 	public JdbcUserDao() {
+		
 		conn = SingletonConnection.getConnection();
+		System.out.println();
+		
 	}
 	
 	
 	
 	public List<UserEntity> list() {
+		
 		List<UserEntity> returnList = new ArrayList<UserEntity>();
 		String sqlList = "SELECT * FROM users ORDER BY id ASC;";
 		ResultSet rsList = null;
@@ -65,11 +69,13 @@ public class JdbcUserDao {
 		}
 		
 		return returnList;
+		
 	}
 	
 	
 	
 	public UserEntity seekId(long id) {
+		
 		String sqlSeekId = "SELECT * FROM users WHERE (id = " + id + ");";
 		ResultSet rsSeekId = null;
 		
@@ -108,11 +114,13 @@ public class JdbcUserDao {
 		}
 		
 		return null;
+		
 	}
 	
 	
 	
 	public UserEntity seekUserName(String soughtUserName) {
+		
 		String sqlSeekUserName = "SELECT * FROM users WHERE (user_name = '" + soughtUserName + "');";
 		ResultSet rsSeekUserName = null;
 		
@@ -171,6 +179,7 @@ public class JdbcUserDao {
 	
 	
 	public void insert(UserEntity user) {
+		
 		String sqlInsert = "INSERT INTO users (full_name, user_name, password, user_level, "
 				+ "addr_postal_code, addr_fu, addr_city, addr_neighborhood, addr_via, addr_number, "
 				+ "addr_complement, picture_base64, picture_content_type) "
@@ -191,8 +200,8 @@ public class JdbcUserDao {
 			sttmntInsert.setString(10, user.getAddrNumber());
 			sttmntInsert.setString(11, user.getAddrComplement());
 			
-			sttmntInsert.setString(12, user.getPictureBase64String() );
-			sttmntInsert.setString(13, user.getPictureContentType() );
+			sttmntInsert.setString(12, user.getPictureBase64String());
+			sttmntInsert.setString(13, user.getPictureContentType());
 			
 			sttmntInsert.execute();
 			conn.commit();
@@ -216,6 +225,7 @@ public class JdbcUserDao {
 	
 	
 	public void update(UserEntity user) {
+		
 		String sqlUpdate =
 				"UPDATE users SET full_name = ?, user_name = ?, password = ?, user_level = ?, addr_postal_code = ?"
 						+ ", addr_fu = ?, addr_city = ?, addr_neighborhood = ?, addr_via = ?, addr_number = ?"
@@ -264,6 +274,7 @@ public class JdbcUserDao {
 	
 	
 	public void exclude(long id) {
+		
 		String sqlExclude = "DELETE FROM users WHERE (id = ?);";
 		
 		try {
@@ -287,4 +298,5 @@ public class JdbcUserDao {
 		}
 		
 	}
+	
 }

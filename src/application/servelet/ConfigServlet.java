@@ -13,30 +13,33 @@ import application.entity.UserEntity;
 
 
 
-
 @WebServlet("/ConfigServlet")
 public class ConfigServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	/* Constructor. */
 	public ConfigServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Logging [ConfigServlet:doPost]");
 		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several. */
 		RequestDispatcher reqDisp = null;
@@ -62,14 +65,13 @@ public class ConfigServlet extends HttpServlet {
 		
 		/* Dependencies: Let a temp objects instantiated fot several uses below. */
 		// JdbcxxxDao xxxDAO = new JdbcxxxDao();
-
+		
 		// FURTHER: JfscApplicationConfigDao configDao = new JfscApplicationConfigDao();
 		
 		/* Select and execute the procedures, in fact. */
 		switch (request.getParameter("action")) {
 			case "save":
 				request.setAttribute("lastAction", "save");
-				System.out.println("Logging [ConfigServlet:doPost:Action = " + request.getParameter("action") + "]");
 				/* UserEntity userToSave = new UserEntity();
 				 * userToSave.setId(request.getParameter("id"));
 				 * userToSave.setFullName(request.getParameter("fullName"));
@@ -91,29 +93,20 @@ public class ConfigServlet extends HttpServlet {
 												 * request.setAttribute("userVRS", userVRS);
 												 * 
 												 * if (userVRS.getVerdict()) {
-												 * System.out.
-												 * println("DEBUG-Logging [UserRegistryServlet:action=save:if-getVeredict-true."
-												 * );
 												 * userDAO.save(userToSave);
 												 * } else {
-												 * System.out.
-												 * println("DEBUG-Logging [UserRegistryServlet:action=save:if-getVeredict-false-else."
-												 * );
 												 * request.setAttribute("soughtUserEdit", userToSave);
 												 * } */
 				break; // FIM DE SAVE.
 				
 			case "edit":
 				request.setAttribute("lastAction", "edit");
-				System.out
-						.println("Logging [UserRegistryServlet:doPost:Action=" + request.getParameter("action") + "]");
 				/* request.setAttribute("soughtUserEdit",
 				 * userDAO.seekId(Long.parseLong(request.getParameter("id")))); */
 				break;
 			
 			default: // By default whatever else value from 'request.getParameter("action")' we must do nothing.
 				request.setAttribute("lastAction", "default");
-				System.out.println("Logging [ConfigServlet:doPost:Action=" + request.getParameter("action") + "]");
 				break;
 		}
 		
@@ -121,5 +114,7 @@ public class ConfigServlet extends HttpServlet {
 		// FURTHER: request.setAttribute(" xxx ", configDao.list());
 		reqDisp = request.getRequestDispatcher("/configPage.jsp");
 		reqDisp.forward(request, response);
+		
 	}
+	
 }

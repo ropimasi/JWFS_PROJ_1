@@ -6,14 +6,17 @@ import application.connection.SingletonConnection;
 
 
 
-
 public class JdbcLogoutDao {
+	
 	private static Connection conn;
 	
 	
 	
 	public JdbcLogoutDao() {
+		
 		conn = SingletonConnection.getConnection();
+		System.out.println();
+		
 	}
 	
 	
@@ -34,4 +37,5 @@ public class JdbcLogoutDao {
 		}
 		
 	}
+	
 }

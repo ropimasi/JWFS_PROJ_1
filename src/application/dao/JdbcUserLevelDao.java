@@ -11,19 +11,23 @@ import application.connection.SingletonConnection;
 
 
 
-
 public class JdbcUserLevelDao {
+	
 	private Connection conn;
 	
 	
 	
 	public JdbcUserLevelDao() {
+		
 		conn = SingletonConnection.getConnection();
+		System.out.println();
+		
 	}
 	
 	
 	
 	public List<String> list() {
+		
 		List<String> returnList = new ArrayList<String>();
 		String sqlList = "SELECT * FROM user_levels ORDER BY name ASC;";
 		ResultSet rsList = null;
@@ -50,11 +54,13 @@ public class JdbcUserLevelDao {
 		}
 		
 		return returnList;
+		
 	}
 	
 	
 	
 	public String seekName(String soughtName) {
+		
 		String sqlSeekName = "SELECT * FROM user_levels WHERE (name = '" + soughtName + "');";
 		ResultSet rsSeekName = null;
 		
@@ -86,6 +92,7 @@ public class JdbcUserLevelDao {
 	
 	
 	public void insert(String userLevel) {
+		
 		/* This algorithm doesn't protect against attempt to insert a duplicated 'UserLevel.name',
 		 * although the database project do protect it through PK and UNIQUEs constraints usage.
 		 * Therefore the current method causes less appreciated UX I'll let that way as it is, to see
@@ -117,6 +124,7 @@ public class JdbcUserLevelDao {
 	
 	
 	public void update(String userLevel, String oldName) {
+		
 		/* This algorithm doesn't protect against attempt to insert a duplicated 'UserLevel.name',
 		 * although the database project do protect it through PK and UNIQUEs constraints usage.
 		 * Therefore the current method causes less appreciated UX I'll let that way as it is, to see
@@ -149,6 +157,7 @@ public class JdbcUserLevelDao {
 	
 	
 	public void exclude(String name) {
+		
 		String sqlExclude = "DELETE FROM user_levels WHERE (name = ?);";
 		
 		try {
@@ -172,4 +181,5 @@ public class JdbcUserLevelDao {
 		}
 		
 	}
+	
 }

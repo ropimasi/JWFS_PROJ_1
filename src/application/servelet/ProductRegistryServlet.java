@@ -13,34 +13,38 @@ import javax.servlet.http.HttpSession;
 import application.dao.JdbcProductDao;
 import application.entity.ProductEntity;
 import application.entity.UserEntity;
-import application.service.ValidationService;
 import application.service.ValidationResultSet;
+import application.service.ValidationService;
 
 
 
 @WebServlet("/ProductRegistryServlet")
 public class ProductRegistryServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	// Constructor.
 	public ProductRegistryServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Logging [ProductRegistryServlet:doPost]");
 		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several. */
 		RequestDispatcher reqDisp = null;
@@ -71,8 +75,6 @@ public class ProductRegistryServlet extends HttpServlet {
 		switch (request.getParameter("action")) {
 			case "save":
 				request.setAttribute("lastAction", "save");
-				System.out.println(
-						"Logging [ProductRegistryServlet:doPost:Action=" + request.getParameter("action") + "]");
 				
 				ProductEntity productToSave = new ProductEntity();
 				productToSave.setId(request.getParameter("id"));
@@ -92,29 +94,21 @@ public class ProductRegistryServlet extends HttpServlet {
 				
 			case "infodetail":
 				request.setAttribute("lastAction", "infodetail");
-				System.out.println(
-						"Logging [ProductRegistryServlet:doPost:Action=" + request.getParameter("action") + "]");
 				break;
 			
 			case "edit":
 				request.setAttribute("lastAction", "edit");
-				System.out.println(
-						"Logging [ProductRegistryServlet:doPost:Action" + request.getParameter("action") + "]");
 				request.setAttribute("soughtProductEdit",
 						productDAO.seekId(Long.parseLong(request.getParameter("id"))));
 				break;
 			
 			case "exclude":
 				request.setAttribute("lastAction", "exclude");
-				System.out.println(
-						"Logging [ProductRegistryServlet:doPost:Action=" + request.getParameter("action") + "]");
 				productDAO.exclude(Long.parseLong(request.getParameter("id")));
 				break;
 			
 			default: // By default whatever else value from 'request.getParameter("action")' we must do nothing.
 				request.setAttribute("lastAction", "default");
-				System.out.println(
-						"Logging [ProductRegistryServlet:doPost:Action=" + request.getParameter("action") + "]");
 				break;
 		}
 		
@@ -122,5 +116,7 @@ public class ProductRegistryServlet extends HttpServlet {
 		request.setAttribute("productList", productDAO.list());
 		reqDisp = request.getRequestDispatcher("/productRegistry.jsp");
 		reqDisp.forward(request, response);
+		
 	}
+	
 }

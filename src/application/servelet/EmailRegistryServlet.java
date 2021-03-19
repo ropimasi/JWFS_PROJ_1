@@ -12,35 +12,38 @@ import javax.servlet.http.HttpSession;
 import application.dao.JdbcEmailDao;
 import application.entity.EmailEntity;
 import application.entity.UserEntity;
-import application.service.ValidationService;
 import application.service.ValidationResultSet;
-
+import application.service.ValidationService;
 
 
 
 @WebServlet("/EmailRegistryServlet")
 public class EmailRegistryServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	// Constructor.
 	public EmailRegistryServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Logging [EmailRegistryServlet:doPost]");
 		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several. */
 		RequestDispatcher reqDisp = null;
@@ -71,8 +74,6 @@ public class EmailRegistryServlet extends HttpServlet {
 			switch (request.getParameter("action")) {
 				case "save":
 					request.setAttribute("lastAction", "save");
-					System.out.println(
-							"Logging [EmailRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 					
 					EmailEntity emailToSave = new EmailEntity();
 					emailToSave.setId(request.getParameter("id"));
@@ -91,31 +92,21 @@ public class EmailRegistryServlet extends HttpServlet {
 					
 				case "infodetail":
 					request.setAttribute("lastAction", "infodetail");
-					System.out.println(
-							"Logging [EmailRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 					break;
 				
 				case "edit":
 					request.setAttribute("lastAction", "edit");
-					System.out.println(
-							"Debug Logging [EmailRegistryServlet:doPost:Action = " + request.getParameter("action")
-									+ "]");
 					request.setAttribute("soughtEmailEdit",
 							emailDao.seekId(Long.parseLong(request.getParameter("id"))));
 					break;
 				
 				case "exclude":
 					request.setAttribute("lastAction", "exclude");
-					System.out.println(
-							"Logging [EmailRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 					emailDao.excludeById(Long.parseLong(request.getParameter("id")));
 					break;
 				
 				default:
 					request.setAttribute("lastAction", "default");
-					System.out.println(
-							"Logging [EmailRegistryServlet:doPost:Action = " + request.getParameter("action")
-									+ "] // CASE DEFAULT.");
 					break;
 			}
 			
@@ -132,5 +123,7 @@ public class EmailRegistryServlet extends HttpServlet {
 			reqDisp = request.getRequestDispatcher("/emailRegistry.jsp");
 			reqDisp.forward(request, response);
 		}
+		
 	}
+	
 }

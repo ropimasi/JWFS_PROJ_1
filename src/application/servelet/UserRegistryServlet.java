@@ -19,24 +19,28 @@ import application.service.ValidationService;
 
 
 
-
 @WebServlet("/UserRegistryServlet")
 @MultipartConfig
 public class UserRegistryServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	/* Constructor. */
 	public UserRegistryServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
@@ -53,8 +57,6 @@ public class UserRegistryServlet extends HttpServlet {
 		request.setAttribute("savingEditingUser;", null);
 		// null -> app not in edit mode, otherwise, contents an user (entity) to edit.
 		
-		
-		
 		/* ### INÍCIO - TÉCNICA DE ASR-URI ### */
 		HttpSession loggedSession = request.getSession();
 		
@@ -64,7 +66,7 @@ public class UserRegistryServlet extends HttpServlet {
 		/* loggedUsesrIdFromParam */
 		long luifp = ((request.getParameter("loggedUserIdParam") != null)
 				&& (!request.getParameter("loggedUserIdParam").isEmpty()))
-				? Long.parseLong(request.getParameter("loggedUserIdParam")) : -1L ;
+						? Long.parseLong(request.getParameter("loggedUserIdParam")) : -1L;
 		
 		if ((lucdfsa == null) || (luifp != lucdfsa.getId())) {
 			request.setAttribute("lastAction", null);
@@ -73,8 +75,6 @@ public class UserRegistryServlet extends HttpServlet {
 			reqDisp.forward(request, response);
 		}
 		/* ### FIM - TÉCNICA DE ASR-URI ### */
-		
-		
 		
 		/* Dependencies: Let a temp objects instantiated fot several uses below. */
 		JdbcUserDao userDAO = new JdbcUserDao();
@@ -98,7 +98,7 @@ public class UserRegistryServlet extends HttpServlet {
 				userToSave.setAddrNumber(request.getParameter("addrNumber"));
 				userToSave.setAddrComplement(request.getParameter("addrComplement"));
 				// Se os campos de arquivos para upload estiverem inválidos
-				// então não quer mudar nada de foto, deve-se manter a mesma. 
+				// então não quer mudar nada de foto, deve-se manter a mesma.
 				if ((request.getPart("userPictureInput") != null) && ServletFileUpload.isMultipartContent(request)) {
 					userToSave.setPictureBase64(request.getPart("userPictureInput"));
 				}
@@ -137,7 +137,9 @@ public class UserRegistryServlet extends HttpServlet {
 		
 		// After whatever case from 'request.getParameter("action")' done, we must do to List.
 		request.setAttribute("usersList", userDAO.list());
-		reqDisp = request.getRequestDispatcher("/userRegistry.jsp?loggedUserIdParam="+ lucdfsa.getId()); 
+		reqDisp = request.getRequestDispatcher("/userRegistry.jsp?loggedUserIdParam=" + lucdfsa.getId());
 		reqDisp.forward(request, response);
+		
 	}
+	
 }

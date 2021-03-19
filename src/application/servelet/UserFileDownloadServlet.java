@@ -15,40 +15,43 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.codec.binary.Base64;
 import application.dao.JdbcUserDao;
 import application.entity.dto.UserCompactDTO;
-import application.service.ObjectTypeConversion;
-
+import application.service.DTOConversion;
 
 
 
 @WebServlet("/UserFileDownloadServlet")
 public class UserFileDownloadServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	public UserFileDownloadServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several times. */
 		RequestDispatcher reqDisp = null;
 		
 		/* Make sure all attributes are reset each new instance of Servlet. */
 		request.setAttribute(" xxx ", null);
 		// null -> app always must retrieve a free list from UserDao before send to the frontend.
-		
-
 		
 		/* ### INÍCIO - TÉCNICA DE ASR-URI ### */
 		HttpSession loggedSession = request.getSession();
@@ -69,8 +72,6 @@ public class UserFileDownloadServlet extends HttpServlet {
 		}
 		/* ### FIM - TÉCNICA DE ASR-URI ### */
 		
-		
-		
 		switch (request.getParameter("action")) {
 			case "downlouserpicture":
 				
@@ -83,7 +84,7 @@ public class UserFileDownloadServlet extends HttpServlet {
 				/* TODO: Further implementation: validating some kind of sub or super hierarquical permission to
 				 * download the selected user. */
 				
-				UserCompactDTO downloadUserDTO = ObjectTypeConversion
+				UserCompactDTO downloadUserDTO = DTOConversion
 						.userCompactDTOFactoryFrom(new JdbcUserDao().seekId(dowloadUserIdFromParam));
 				
 				/* Didático: Set the header of the response, properly. */
@@ -118,4 +119,5 @@ public class UserFileDownloadServlet extends HttpServlet {
 		
 		// After whatever case from 'request.getParameter("action")' done, we must show/close the page.
 	}
+	
 }

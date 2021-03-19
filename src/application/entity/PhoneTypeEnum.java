@@ -1,8 +1,10 @@
 package application.entity;
 
+
 public enum PhoneTypeEnum {
 	CELL_PROFISSIONAL,
 	CELL_PESSOAL,
 	FIXO_PROFISSIONAL,
-	FIXO_PESSOAL;
+	FIXO_PESSOAL,
+	OUTROS;
 }

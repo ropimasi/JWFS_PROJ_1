@@ -18,29 +18,34 @@ import application.service.ValidationService;
 
 
 
-
 @WebServlet("/PhoneRegistryServlet")
 public class PhoneRegistryServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	// Constructor.
 	public PhoneRegistryServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several. */
 		RequestDispatcher reqDisp = null;
 		/* Make sure all attributes are reset each new instance of Servlet. */
@@ -120,5 +125,7 @@ public class PhoneRegistryServlet extends HttpServlet {
 		request.setAttribute("phonesList", phoneDao.list());
 		reqDisp = request.getRequestDispatcher("/phoneRegistry.jsp?loggedUserIdParam=" + lucdfsa.getId());
 		reqDisp.forward(request, response);
+		
 	}
+	
 }

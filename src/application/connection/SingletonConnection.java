@@ -6,11 +6,10 @@ import java.sql.DriverManager;
 
 
 
-
 public class SingletonConnection { // PostgreSQL-12 Porta 5432. // PostgreSQL-13 Porta 5433.
+	
 	private static String urlDB =
 			"jdbc:postgresql://localhost:5432/jwfs_proj_1_db?createDatabaseIfNotExist=true&autoReconnect=true&useTimezone=true&serverTimezone=UTC";
-	
 	
 	// &useSSL=false
 	private static String userDB = "postgres";
@@ -26,14 +25,18 @@ public class SingletonConnection { // PostgreSQL-12 Porta 5432. // PostgreSQL-13
 	
 	// Constructor.
 	public SingletonConnection() {
+		
 		connect();
+		
 	}
 	
 	
 	
 	public static Connection getConnection() {
+		
 		connect();
 		return conn;
+		
 	}
 	
 	
@@ -70,8 +73,9 @@ public class SingletonConnection { // PostgreSQL-12 Porta 5432. // PostgreSQL-13
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("DEBUG: Hum?! Fail on databse disconnection... [" + e + "]");
+			throw new RuntimeException("Hum?! Fail on databse disconnection... [" + e + "]");
 		}
 		
 	}
+	
 }

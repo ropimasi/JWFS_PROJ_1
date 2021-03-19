@@ -14,9 +14,9 @@ import application.entity.dto.UserCompactDTO;
 
 
 
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	public static JdbcLoginDao loginDao = new JdbcLoginDao();
 	
@@ -24,22 +24,26 @@ public class LoginServlet extends HttpServlet {
 	
 	// Constructor.
 	public LoginServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
-	
 	
 	/* LEGENDA:
 	 * lucdfsa = A var - loggedUserCompactDTOFromSessionAttribute
 	 * lucdsa - A session attribute - loggedUserCompactDTOSessionAttribute
-	 * luifp = A var - loggedUsesrIdFromParam
-	 * */
+	 * luifp = A var - loggedUsesrIdFromParam */
+	
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -47,12 +51,14 @@ public class LoginServlet extends HttpServlet {
 		// fluxo de dados da response, ou seja, vai para página html.
 		
 		HttpSession loggedSession = request.getSession();
-		UserCompactDTO acceptedUser = loginDao.validateLogin(request.getParameter("usuario"), request.getParameter("senha")); 
+		UserCompactDTO acceptedUser =
+				loginDao.validateLogin(request.getParameter("usuario"), request.getParameter("senha"));
 		
 		if (acceptedUser != null) {
 			loggedSession.setAttribute("lucdsa", acceptedUser);
 			RequestDispatcher reqDisp = request.getRequestDispatcher(
-					"menuDashboard.jsp?loggedUserIdParam=" + ((UserCompactDTO) loggedSession.getAttribute("lucdsa")).getId());
+					"menuDashboard.jsp?loggedUserIdParam="
+							+ ((UserCompactDTO) loggedSession.getAttribute("lucdsa")).getId());
 			reqDisp.forward(request, response);
 		}
 		else {
@@ -62,4 +68,5 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 	}
+	
 }

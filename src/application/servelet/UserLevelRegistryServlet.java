@@ -11,35 +11,38 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import application.dao.JdbcUserLevelDao;
 import application.entity.UserEntity;
-import application.service.ValidationService;
 import application.service.ValidationResultSet;
-
+import application.service.ValidationService;
 
 
 
 @WebServlet("/UserLevelRegistryServlet")
 public class UserLevelRegistryServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
 	
 	/* Constructor. */
 	public UserLevelRegistryServlet() {
+		
 		super();
+		
 	}
 	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doPost(request, response);
+		
 	}
 	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Logging [UserRegistryServlet:doPost]");
 		
 		/* Init RequestDispatcher before loop or try blocks, init once, use several. */
 		RequestDispatcher reqDisp = null;
@@ -72,8 +75,6 @@ public class UserLevelRegistryServlet extends HttpServlet {
 		switch (request.getParameter("action")) {
 			case "insert":
 				request.setAttribute("lastAction", "insert");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				userLevelToSave = request.getParameter("name");
 				
 				/* Of course these 2 statements could be cast in 1 statement,
@@ -82,19 +83,15 @@ public class UserLevelRegistryServlet extends HttpServlet {
 				request.setAttribute("userLevelVRS", userLevelVRS);
 				
 				if (userLevelVRS.getVerdict()) {
-					System.out.println("DEBUG-Logging [UserRegistryServlet:action=insert:if-getVeredict-true.");
 					userLevelDao.insert(userLevelToSave);
 				}
 				else {
-					System.out.println("DEBUG-Logging [UserRegistryServlet:action=insert:if-getVeredict-false-else.");
 					request.setAttribute("soughtUserLevelEdit", userLevelToSave);
 				}
 				break;
 			
 			case "update":
 				request.setAttribute("lastAction", "update");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				userLevelToSave = request.getParameter("name");
 				
 				/* Of course these 2 statements could be cast in 1 statement,
@@ -103,39 +100,29 @@ public class UserLevelRegistryServlet extends HttpServlet {
 				request.setAttribute("userLevelVRS", userLevelVRS);
 				
 				if (userLevelVRS.getVerdict()) {
-					System.out.println("DEBUG-Logging [UserRegistryServlet:action=insert:if-getVeredict-true.");
 					userLevelDao.update(userLevelToSave, request.getParameter("oldName"));
 				}
 				else {
-					System.out.println("DEBUG-Logging [UserRegistryServlet:action=insert:if-getVeredict-false-else.");
 					request.setAttribute("soughtUserLevelEdit", userLevelToSave);
 				}
 				break;
 			
 			case "infodetail":
 				request.setAttribute("lastAction", "infodetail");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				break;
 			
 			case "edit":
 				request.setAttribute("lastAction", "edit");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				request.setAttribute("soughtUserLevelEdit", userLevelDao.seekName(request.getParameter("name")));
 				break;
 			
 			case "exclude":
 				request.setAttribute("lastAction", "exclude");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				userLevelDao.exclude(request.getParameter("name"));
 				break;
 			
 			default:
 				request.setAttribute("lastAction", "default");
-				System.out.println(
-						"Logging [UserLevelRegistryServlet:doPost:Action = " + request.getParameter("action") + "]");
 				break;
 		}
 		
@@ -143,5 +130,7 @@ public class UserLevelRegistryServlet extends HttpServlet {
 		request.setAttribute("userLevelsList", userLevelDao.list());
 		reqDisp = request.getRequestDispatcher("/userLevelRegistry.jsp");
 		reqDisp.forward(request, response);
+		
 	}
+	
 }

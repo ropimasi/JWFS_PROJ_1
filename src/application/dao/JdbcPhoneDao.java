@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import application.connection.SingletonConnection;
 import application.entity.PhoneEntity;
 import application.entity.PhoneTypeEnum;
@@ -15,19 +14,23 @@ import application.entity.UserEntity;
 
 
 
-
 public class JdbcPhoneDao {
+	
 	private Connection conn;
 	
 	
 	
 	public JdbcPhoneDao() {
+		
 		conn = SingletonConnection.getConnection();
+		System.out.println();
+		
 	}
 	
 	
 	
 	public List<PhoneEntity> list() {
+		
 		List<PhoneEntity> returnList = new ArrayList<PhoneEntity>();
 		String sqlList = "SELECT * FROM phones ORDER BY id ASC;";
 		ResultSet rsList = null;
@@ -58,11 +61,13 @@ public class JdbcPhoneDao {
 		}
 		
 		return returnList;
+		
 	}
 	
 	
 	
 	public List<PhoneEntity> listByUser(UserEntity user) {
+		
 		List<PhoneEntity> returnList = new ArrayList<PhoneEntity>();
 		String sqlList = "SELECT * FROM phones WHERE (user_id = ?) ORDER BY area_code ASC;";
 		ResultSet rsList = null;
@@ -94,11 +99,13 @@ public class JdbcPhoneDao {
 		}
 		
 		return returnList;
+		
 	}
 	
 	
 	
 	public List<PhoneEntity> listByUserId(long userId) {
+		
 		List<PhoneEntity> returnList = new ArrayList<PhoneEntity>();
 		String sqlList = "SELECT * FROM phones WHERE (user_id = ?) ORDER BY area_code ASC;";
 		ResultSet rsList = null;
@@ -130,11 +137,13 @@ public class JdbcPhoneDao {
 		}
 		
 		return returnList;
+		
 	}
 	
 	
 	
 	public PhoneEntity seekId(long id) {
+		
 		String sqlSeekId = "SELECT * FROM phones WHERE (id = " + id + ");";
 		ResultSet rsSeekId = null;
 		
@@ -164,11 +173,13 @@ public class JdbcPhoneDao {
 		}
 		
 		return null;
+		
 	}
 	
 	
 	
 	public PhoneEntity seekNumber(String soughtNumber) {
+		
 		String sqlSeekNumber = "SELECT * FROM phones WHERE (number = '" + soughtNumber + "');";
 		ResultSet rsSeekNumber = null;
 		
@@ -221,6 +232,7 @@ public class JdbcPhoneDao {
 	
 	
 	public void insert(PhoneEntity phone) {
+		
 		String sqlInsert =
 				"INSERT INTO phones (country_code, area_code, number, type, user_id) VALUES (?, ?, ?, ?, ?);";
 		
@@ -253,6 +265,7 @@ public class JdbcPhoneDao {
 	
 	
 	public void update(PhoneEntity phone) {
+		
 		String sqlUpdate =
 				"UPDATE phones SET country_code = ?, area_code = ?, number = ?, type = ?, user_id = ? WHERE (id = ?);";
 		
@@ -286,6 +299,7 @@ public class JdbcPhoneDao {
 	
 	
 	public void exclude(long id) {
+		
 		String sqlExclude = "DELETE FROM phones WHERE (id = ?);";
 		
 		try {
@@ -309,4 +323,5 @@ public class JdbcPhoneDao {
 		}
 		
 	}
+	
 }

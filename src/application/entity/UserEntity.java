@@ -4,12 +4,14 @@ package application.entity;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
 import javax.servlet.http.Part;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+
 import application.dao.JdbcEmailDao;
 import application.dao.JdbcPhoneDao;
-
 
 
 
@@ -72,7 +74,7 @@ public class UserEntity {
 	// Overload.
 	public void setId(String strId) {
 		
-		if ( (strId != null) && !strId.equalsIgnoreCase("") ) {
+		if ((strId != null) && !strId.equalsIgnoreCase("")) {
 			
 			try {
 				this.id = Long.parseLong(strId);
@@ -220,6 +222,7 @@ public class UserEntity {
 	
 	// Overload.
 	public void setPictureBase64(String userPictureBase64String) {
+		
 		this.pictureBase64 = userPictureBase64String;
 		
 		/* String tmpStr = userPictureStringBase64.split(";base64,")[0];
@@ -248,6 +251,7 @@ public class UserEntity {
 	
 	@Override
 	public int hashCode() {
+		
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((addrCity == null) ? 0 : addrCity.hashCode());
@@ -263,5 +267,7 @@ public class UserEntity {
 		result = prime * result + ((userLevel == null) ? 0 : userLevel.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
+		
 	}
+	
 }

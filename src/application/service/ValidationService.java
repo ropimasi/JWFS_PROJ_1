@@ -3,12 +3,11 @@ package application.service;
 
 import java.math.BigDecimal;
 import application.dao.JdbcUserDao;
+import application.entity.EmailEntity;
 import application.entity.PhoneEntity;
 import application.entity.ProductEntity;
-import application.entity.EmailEntity;
 import application.entity.UserEntity;
 import application.entity.UserLevelEntity;
-
 
 
 
@@ -81,51 +80,48 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* password validation. */
 	public static ValidationResult validatePassword(String password) {
+		
 		/* Business Rules password must has 3 character at least, and has 21 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validatePassword='" + password + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
 		if (password == null) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword=Null('" + password + "')]");
 			returnVR.setCode(-1);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is null, impratical: INVALID !");
 		}
 		else if (password.isEmpty()) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword=isEmpty('" + password + "')]");
 			returnVR.setCode(-2);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is empty, impratical: INVALID !");
 		}
 		else if (password.length() < UserEntity.PASSWORD_MIN_LEN) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword<PASSWORD_MIN_LEN('" + password + "')]");
 			returnVR.setCode(-3);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is too short, against rules: INVALID !");
 		}
 		else if (password.length() > UserEntity.PASSWORD_MAX_LEN) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword>PASSWORD_MAX_LEN('" + password + "')]");
 			returnVR.setCode(-4);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is too long, against rules: INVALID !");
 		}
 		else {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword:else:valid('" + password + "')]");
 			returnVR.setCode(0);
 			returnVR.setType("Information");
 			returnVR.setDescription("The 'password' property has a right size: VALID !");
 		}
 		
 		return returnVR;
+		
 	}
 	
 	/* fullName */
@@ -159,6 +155,7 @@ public final class ValidationService {
 		
 		// Send the LIST containing 2 or more VR as return.
 		return returnVRS;
+		
 	}
 	
 	
@@ -166,52 +163,47 @@ public final class ValidationService {
 	/* BELOW: PARTIAL VALIDATION METHODS FOR EMAIL'S PROPERTIES. */
 	/* email validation. */
 	public static ValidationResult validateEmail(String email) {
-		System.out.println("DEBUG Logging [ValidationService:validateEmail='" + email + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
 		/* ### TODO Em construcao falta codificar demais condições que validam o email @. */
 		
 		if (email == null) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword=Null('" + email + "')]");
 			returnVR.setCode(-1);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'email' property is null, impratical: INVALID !");
 		}
 		else if (email.isEmpty()) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword=isEmpty('" + email + "')]");
 			returnVR.setCode(-2);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'email' property is empty, impratical: INVALID !");
 		}
 		else if (email.length() < EmailEntity.EADDRESS_MIN_LEN) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword<PASSWORD_MIN_LEN('" + email + "')]");
 			returnVR.setCode(-3);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'email' property is too short, against rules: INVALID !");
 		}
 		else if (email.length() > EmailEntity.EADDRESS_MAX_LEN) {
-			System.out.println("DEBUG-Logging [ValidationService:validatePassword>PASSWORD_MAX_LEN('" + email + "')]");
 			returnVR.setCode(-4);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'email' property is too long, against rules: INVALID !");
 		}
 		else {
-			System.out.println("DEBUG-Logging [ValidationService:validateEmail:else:valid('" + email + "')]");
 			returnVR.setCode(0);
 			returnVR.setType("Information");
 			returnVR.setDescription("The 'email' property has a right size: VALID !");
 		}
 		
 		return returnVR;
+		
 	}
 	
 	// TODO parei aki 20210126 mult-email0registry back end ok, agora iniciar ajuste no front end.
 	
 	
+	
 	/* INTEGRAL VALIDATION METHOD FOR EMAIL'S PROPERTIES. GHATHERING THE ABOVE ONES. */
 	public static ValidationResultSet validateEmailFull(EmailEntity email) {
-		System.out.println("DEBUG Logging [ValidationService:validateEmailFull = '" + email + "']");
 		
 		ValidationResult tmpVR = new ValidationResult();
 		ValidationResultSet returnVRS = new ValidationResultSet();
@@ -229,6 +221,7 @@ public final class ValidationService {
 		
 		// Send the LIST containing 1 or more VR as return.
 		return returnVRS;
+		
 	}
 	
 	
@@ -236,10 +229,10 @@ public final class ValidationService {
 	/* BELOW: PARTIAL VALIDATION METHODS FOR PHONE'S PROPERTIES. */
 	/* countryCode validation */
 	public static ValidationResult validateCountryCode(String countryCode) {
+		
 		/* Business Rules countryCode must has 2 character at least, and has 3 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validateCountryCode = '" + countryCode + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -270,16 +263,17 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* areaCode validation. */
 	public static ValidationResult validateAreaCode(String areaCode) {
+		
 		/* Business Rules areaCode must has 2 character at least, and has 3 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validateAreaCode = '" + areaCode + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -310,16 +304,17 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* phoneNumber validation. */
 	public static ValidationResult validatePhoneNumber(String phoneNumber) {
+		
 		/* Business Rules areaCode must has 3 character at least, and has 10 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validatePhoneNumber = '" + phoneNumber + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -350,6 +345,7 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	/* type */
@@ -368,7 +364,6 @@ public final class ValidationService {
 	
 	/* INTEGRAL VALIDATION METHOD FOR PHONE'S PROPERTIES. GHATHERING THE ABOVE ONES. */
 	public static ValidationResultSet validatePhoneFull(PhoneEntity phone) {
-		System.out.println("DEBUG Logging [ValidationService:validatePhoneFull = '" + phone + "']");
 		
 		ValidationResult tmpVR = new ValidationResult();
 		ValidationResultSet returnVRS = new ValidationResultSet();
@@ -400,6 +395,7 @@ public final class ValidationService {
 		
 		// Send the LIST containing 2 or more VR as return.
 		return returnVRS;
+		
 	}
 	
 	
@@ -407,10 +403,10 @@ public final class ValidationService {
 	/* BELOW: PARTIAL VALIDATION METHODS FOR PRODUCT'S PROPERTIES. */
 	/* productName validation. */
 	public static ValidationResult validateProductName(String productName) {
+		
 		/* Business Rules areaCode must has 3 character at least, and has 128 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validateProductName = '" + productName + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -441,16 +437,17 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* purchasePrice OR salePrice validation, whatever field in 1 method, one each time. */
 	public static ValidationResult validateProductPrices(BigDecimal aPrice) {
+		
 		/* Business Rules: both prices must have 0.00 value at least, and have 9999999999.99 value at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [validateProductPrices = '" + aPrice + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -483,6 +480,7 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
@@ -490,10 +488,10 @@ public final class ValidationService {
 	/* Overload. */
 	/* purchasePrice AND salePrice validation, both fields in the same time. ### THIS METHOD IS BETTER ### */
 	public static ValidationResult validateProductPrices(BigDecimal purchasePrice, BigDecimal salePrice) {
+		
 		/* Business Rules: both prices must have 0.00 value at least, and have 9999999999.99 value at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [validateProductPrices = '" + purchasePrice + "','" + salePrice + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -539,16 +537,17 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* stockQtty validation. */
 	public static ValidationResult validateProductStockQtty(float stockQtty) {
+		
 		/* Business Rules: stockQtty must have 0.00 value at least, and have 9999999999.99 value at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [validateProductStockQtty = '" + stockQtty + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -577,13 +576,13 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* INTEGRAL VALIDATION METHOD FOR PRODUCT'S PROPERTIES. GHATHERING THE ABOVE ONES. */
 	public static ValidationResultSet validateProductFull(ProductEntity product) {
-		System.out.println("DEBUG Logging [ValidationService:validateProductFull = '" + product + "']");
 		
 		ValidationResult tmpVR = new ValidationResult();
 		ValidationResultSet returnVRS = new ValidationResultSet();
@@ -607,6 +606,7 @@ public final class ValidationService {
 		
 		// Send the LIST containing 2 or more VR as return.
 		return returnVRS;
+		
 	}
 	
 	
@@ -614,10 +614,10 @@ public final class ValidationService {
 	/* BELOW: PARTIAL VALIDATION METHODS FOR USERLEVEL'S PROPERTIES. */
 	/* userLevelName validation. */
 	public static ValidationResult validateUserLevelName(String userLevelName) {
+		
 		/* Business Rules areaCode must has 3 character at least, and has 128 character at most.
 		 * ALTHOUGH THOSE VALUES CAN BE CHANGED. ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT
 		 * VALUES. */
-		System.out.println("DEBUG Logging [ValidationService:validateuserLevelName = '" + userLevelName + "']");
 		
 		ValidationResult returnVR = new ValidationResult();
 		
@@ -648,13 +648,13 @@ public final class ValidationService {
 		}
 		
 		return returnVR;
+		
 	}
 	
 	
 	
 	/* INTEGRAL VALIDATION METHOD FOR USERLEVEL'S PROPERTIES. GHATHERING THE ABOVE ONES. */
 	public static ValidationResultSet validateUserLevelFull(String userLevel) {
-		System.out.println("DEBUG Logging [ValidationService:validateProductFull = '" + userLevel + "']");
 		
 		ValidationResult tmpVR = new ValidationResult();
 		ValidationResultSet returnVRS = new ValidationResultSet();
@@ -668,5 +668,7 @@ public final class ValidationService {
 		
 		// Send the LIST containing 2 or more VR as return.
 		return returnVRS;
+		
 	}
+	
 }

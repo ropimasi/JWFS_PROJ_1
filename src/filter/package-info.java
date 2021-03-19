@@ -5,4 +5,4 @@
  * @author Ronaldo Marques
  *
  */
-package application.filter;
+package filter;
