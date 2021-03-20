@@ -13,5 +13,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="dependency-jars/postgresql-42.2.19.jar"/>
+	<classpathentry kind="lib" path="dependency-jars/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="dependency-jars/commons-fileupload-1.4.jar"/>
+	<classpathentry kind="lib" path="dependency-jars/commons-io-2.8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

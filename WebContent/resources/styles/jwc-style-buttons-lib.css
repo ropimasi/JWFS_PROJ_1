@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Esteban&family=Exo:wght@400;700&family=Gafata&family=Jura:wght@400;700&display=swap");
+/* CSS rules to specify families:
+ * font-family: 'Esteban', serif;
+ * font-family: 'Inconsolata', monospace;
+ * font-family: 'Montserrat', sans-serif;
+ * font-family: 'Exo', sans-serif;
+ * font-family: 'Jura', sans-serif;
+ * font-family: 'Gafata', sans-serif; */
+ 
+/******** SECTION ESPECIFIC STYLES FOR BUTTONS ON THIS PROJECT. ********/
+
+/* BLOCK: BUTTONS.  */
+button ,
+button:visited {
+	/* Shape & Finishes. */
+	outline: none;
+	cursor: pointer;
+	width: auto;
+	font-family: 'Inconsolata', monospace;	
+	font-weight: var(--f-w-normal);
+	box-shadow: 2px 2px 8px 0px var(--shd-m-Clr);
+	/* Transitions */
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+}
+button:hover ,
+button:focus {
+	outline: none;
+	cursor: pointer;
+	width: auto;
+	font-family: 'Inconsolata', monospace;	
+	font-weight: var(--f-w-normal);
+	box-shadow: 2px 2px 8px 0px var(--shd-m-Clr);
+	/* Transitions */
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+}
+button:active {
+	outline: none;
+	/* Transitions Shapes & Finishes. */
+	box-shadow: inset 2px 2px 8px 0px var(--shd-m-Clr);
+}
+.small {
+	/* Size & Shape */
+	min-width:10%;
+	max-width: 25%;
+	border: 1px solid;
+	margin: 8px;
+	padding: 6px;
+	/* Fonts & Afins. */
+	font-size: 11px;	
+	line-height: 15px;
+}
+.middle {
+	/* Size & Shape */
+	min-width: 20%;
+	max-width: 35%;
+	border: 2px solid;
+	margin: 10px;
+	padding: 8px;
+	/* Fonts & Afins. */
+	font-size: 14px;	
+	line-height: 18px;
+}
+.big {
+	/* Size & Shape */
+	min-width: 30%;
+	max-width: 45%;
+	border: 3px solid;
+	margin: 12px;
+	padding: 10px;
+	/* Fonts & Afins. */
+	font-size: 18px;	
+	line-height: 22px;
+}
+.solution ,
+.solution:visited {
+	/* Colors & Finishes. */ 
+	background: var(--m-c-nuan-B);
+	border-color: var(--m-c-dark-B);
+	/* Fonts & Afins. */
+	color: var(--icewhite);	
+}
+.solution:hover ,
+.solution:focus {
+	/* Colors & Finishes. */
+	background: var(--xlblue);
+	border-color: var(--lblue);
+	/* Fonts & Afins. */
+	color: var(--dgray);
+}
+.progress {
+	/* Colors & Finishes. */ 
+	background: var(--m-c-nuan-G);
+	border-color: var(--m-c-dark-G);
+	/* Fonts & Afins. */
+	color: var(--icewhite);	
+}
+.progress:hover ,
+.progress:focus {
+	/* Colors & Finishes. */ 
+	background: var(--xlgreen);
+	border-color: var(--lgreen);
+	/* Fonts & Afins. */
+	color: var(--gray);	
+}
+.permanence {
+	/* Colors & Finishes. */
+	background: var(--dyellow);
+	border-color: var(--xdyellow);
+	/* Fonts & Afins. */
+	color: var(--icewhite);
+}
+.permanence:hover ,
+.permanence:focus {
+	/* Colors & Finishes. */
+	background: var(--xlyellow);
+	border-color: var(--lyellow);
+	/* Fonts & Afins. */
+	color: var(--gray);
+}
+.disapproval {
+	/* Colors & Finishes. */ 
+	background: var(--dorange);
+	border-color: var(--xdorange);
+	/* Fonts & Afins. */
+	color: var(--icewhite);	
+}
+.disapproval:hover ,
+.disapproval:focus {
+	/* Colors & Finishes. */ 
+	background: var(--xlorange);
+	border-color: var(--lorange);
+	/* Fonts & Afins. */
+	color: var(--gray);	
+}
+.setback {
+	/* Colors & Finishes. */ 
+	background: var(--m-c-nuan-R);
+	border-color: var(--m-c-dark-R);
+	/* Fonts & Afins. */
+	color: var(--icewhite);	
+}
+.setback:hover ,
+.setback:focus {
+	/* Colors & Finishes. */ 
+	background: var(--xlred);
+	border-color: var(--lred);
+	/* Fonts & Afins. */
+	color: var(--gray);	
+}
+/*EOF.ROPIMASI.*/

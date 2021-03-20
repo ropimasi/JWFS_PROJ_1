@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/******** SECTION: ROOT VARIABLES FOR STYLE SCHEME. ********/
+
+:root {
+	/* BLOCK: MY VARIABLES FOR FONT SCHEME  */
+	/* From 100 to 900, step 100, being 400 similar "normal", 700 similar "bold". */ 
+	--font-weight-ref: 400; 
+	--f-w-normal: var(--font-weight-ref); /* Font Weight Normal */  
+	--f-w-thin: calc(var(--f-w-normal) - 300); /* Font Weight Thin */  
+	--f-w-bold: calc(var(--f-w-normal) + 300); /* Font Weight Bold */
+
+	/* From 1 to 90, step 1, being 12. */  
+	--font-size-ref: 12px;  
+	--f-s-normal: var(--font-size-ref); /* Font Size Normal */  
+	--f-s-small: calc(var(--f-s-normal) - 2px); /* Font Size Small */
+	--f-s-smaller: calc(var(--f-s-normal) - 4px); /* Font Size Small */
+	--f-s-smallest: calc(var(--f-s-normal) - 6px); /* Font Size Small */
+	--f-s-big: calc(var(--f-s-normal) + 2px); /* Font Size Big */
+	--f-s-abitbigger: calc(var(--f-s-normal) + 5px); /* Font Size Big */
+	--f-s-alotbigger: calc(var(--f-s-normal) + 9px); /* Font Size Big */	
+	--f-s-biggest: calc(var(--f-s-normal) + 14px); /* Font Size Big */
+
+
+	/* BLOCK: MY VARIABLES FOR SHADOW SCHEME.  */
+	/* Shadown Intensity Reference. From 1 to 10, step 1. */  
+	--shd-ints-ref: 5;  
+	--shd-h-X: calc(var(--shd-ints-ref) * 3); /* Shadown High X axis px. */  
+	--shd-h-Y: calc(var(--shd-ints-ref) * 3); /* Shadown High Y axis px. */  
+	--shd-h-Blr: calc(var(--shd-ints-ref) * 6); /* Shadown High Blur px. */  
+	--shd-h-Spr: calc(var(--shd-h-Blr) / 5); /* Shadown High Spread px. */  
+	--shd-h-Clr: rgba(0, 0, 0, calc(calc(var(--shd-ints-ref) - 3) / 10)); /* Shadown High Color. */  
+	--shd-h2-X: calc(var(--shd-ints-ref) * -1); /* Shadown High2 X axis px. */  
+	--shd-h2-Y: calc(var(--shd-ints-ref) * -1); /* Shadown High2 Y axis px. */  
+	--shd-h2-Blr: calc(var(--shd-ints-ref) * 2); /* Shadown High2 Blur px. */  
+	--shd-h2-Spr: calc(calc(var(--shd-h2-Blr) / 5) * 2); /* Shadown High2 Spread px. */  
+	--shd-h2-Clr: rgba(0, 0, 0, calc(calc(var(--shd-ints-ref) - 1) / 10)); /* Shadown High2 Color. */  
+	--shd-m-X: calc(var(--shd-ints-ref) * 2); /* Shadown Medium X axis px. */  
+	--shd-m-Y: calc(var(--shd-ints-ref) * 2); /* Shadown Medium Y axis px. */  
+	--shd-m-Blr: calc(var(--shd-ints-ref) * 4); /* Shadown Medium Blur px. */  
+	--shd-m-Spr: calc(var(--shd-m-Blr) / 10); /* Shadown Medium Spread px. */  
+	--shd-m-Clr: rgba(0, 0, 0, calc(calc(var(--shd-ints-ref) + 1) / 10)); /* Shadown Medium Color. */  
+	--shd-l-X: calc(var(--shd-ints-ref) * 1); /* Shadown Low X axis px. */  
+	--shd-l-Y: calc(var(--shd-ints-ref) * 1); /* Shadown Low Y axis px. */  
+	--shd-l-Blr: calc(var(--shd-ints-ref) * 2); /* Shadown Low Blur px. */  
+	--shd-l-Spr: calc(var(--shd-l-Blr) / 10); /* Shadown Low ium Spread px. */  
+	--shd-l-Clr: rgba(0, 0, 0, calc(calc(var(--shd-ints-ref) + 3) / 10)); /* Shadown Low Color. */
+}
+
+/*EOF.ROPIMASI.*/

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+/******** SECTION ESPECIFIC STYLES FOR GRIDS ON THIS PROJECT. ********/
+
+/* BLOCK: GRID AREA: USERS INFORMATIONS.  */
+.ga-user-id { grid-area: user-id; }
+.ga-user-pic { grid-area: user-pic; }
+.ga-user-full-name { grid-area: user-full-name; }
+.ga-user-name { grid-area: user-name; }
+.ga-user-pass { grid-area: user-pass; }
+.ga-user-level { grid-area: user-level; }
+.ga-user-phones { grid-area: user-phones; }
+.ga-user-emails { grid-area: user-emails; }
+
+.grid-container-user-info {
+	display: grid;
+	position: relative;
+	
+	width: 100%;
+	max-width: 1000px;
+	min-width: 150px;  
+	
+	margin: 0px auto;
+	padding: 4px 0px;
+	
+	background-color: ;/*rgba(180, 220, 250, 0);*/  
+	
+	grid-column-gap: 8px;
+	grid-row-gap: 8px;
+	grid-template-areas:
+    'user-id		user-id			user-id			user-id			user-pic		user-pic'
+    'user-full-name	user-full-name	user-full-name	user-full-name	user-pic		user-pic'
+    'user-name		user-name		user-name		user-name		user-pic		user-pic'
+    'user-pass		user-pass		user-pass		user-pass		user-pic		user-pic'
+    'user-level		user-level		user-level		user-level		user-pic		user-pic'
+    'user-phones	user-phones		user-phones		user-emails		user-emails		user-emails';    
+}
+
+.grid-container-user-info > div {
+	display: block;
+	position: relative;
+
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	align-self: middle;
+
+	width: 100%;
+	max-width: 990px;
+	min-width: 140px;  
+
+	margin: 0px auto;
+	padding: 0px;
+	border: /*1px solid var(--lgray)*/;
+	border-radius: ;
+	background-color: ;/* rgba(250, 240, 180, 0); */
+}
+
+
+/* BLOCK: GRID AREA: USERS ADDRESS INFORMATIONS.  */
+.ga-u-address-country { grid-area: country; }
+.ga-u-address-postal-code { grid-area: postal-code; }
+.ga-u-address-fu { grid-area: fu; }
+.ga-u-address-city { grid-area: city; }
+.ga-u-address-neighborhood { grid-area: neighborhood; }
+.ga-u-address-via { grid-area: via; }
+.ga-u-address-number { grid-area: number; }
+.ga-u-address-complement { grid-area: complement; }
+
+.grid-container-u-address-info {
+	display: grid;
+	position: relative;
+	
+	width: 100%;
+	max-width: 1000px;
+	min-width: 150px;  
+	
+	margin: 0px auto;
+	padding: 4px 0px;
+	
+	background-color: ;/*rgba(180, 220, 250, 0);*/  
+	
+	grid-column-gap: 8px;
+	grid-row-gap: 8px;
+	grid-template-areas:
+    'country		country			country		country		postal-code		postal-code'
+    'fu				fu				city		city		city			city'
+    'neighborhood	neighborhood	via			via			via				via'
+    'number			complement		complement	complement	complement		complement';    
+}
+
+.grid-container-u-address-info > div {
+  	display: block;
+	position: relative;
+
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	align-self: middle;
+
+	width: 100%;
+	max-width: 990px;
+	min-width: 140px;  
+
+	margin: 0px auto;
+	padding: 0px;
+	border: /*1px solid var(--lgray)*/;
+	border-radius: ;
+	background-color: ;/* rgba(250, 240, 180, 0); */
+}
+/*EOF.ROPIMASI.*/

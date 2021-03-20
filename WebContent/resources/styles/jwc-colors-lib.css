@@ -1,0 +1,405 @@
+@charset "UTF-8";
+
+
+
+/******** SECTION: MY VARIABLES FOR COLOR SCHEME. ********/
+:root {
+
+	
+	/* BLOCK: WHITE PIGMENTS & WHITE COLOR VARIANTIONS. */
+	
+	/* Hot White for this project. */  
+	--wR: 255;  
+	--wG: 254;  
+	--wB: 253;  
+	--white: rgba(var(--wR), var(--wG), var(--wB), 1);  
+	--owR: calc(var(--wR) - 3);
+	--owG: calc(var(--wG) - 4);
+	--owB: calc(var(--wB) - 5);
+	--offwhite: rgba(var(--owR), var(--owG), var(--owB), 1);  
+	--darkoffwhite: rgba(calc(var(--owR) - 8), calc(var(--owG) - 8), calc(var(--owB) - 8), 1);  
+	--iwR: var(--owB);
+	--iwG: var(--owG);
+	--iwB: var(--owR);
+	--icewhite: rgba(var(--iwR), var(--iwG), var(--iwB), 1);
+	--darkicewhite: rgba(calc(var(--iwR) - 8), calc(var(--iwG) - 8), calc(var(--iwB) - 8), 1);
+	
+	
+	/* BLOCK: BACK PIGMENTS & BLACK COLOR VARIANTIONS. */  
+	
+	/* Hot Back for this project.*/
+	--kR: 0;  
+	--kG: 1;  
+	--kB: 2;  
+	--black: rgba(var(--kR), var(--kG), var(--kB), 1);  
+	--skR: calc(var(--kR) + 34);  
+	--skG: calc(var(--kG) + 32);  
+	--skB: calc(var(--kB) + 30);  
+	--smoothblack: rgba(var(--skR), var(--skG), var(--skB), 1);
+
+	
+	/* BLOCK: GRAY PIGMENTS & GRAY COLOR VARIANTIONS. */  
+	--grR: 128;  
+	--grG: 127;  
+	--grB: 126;  
+	--gray: rgba(var(--grR), var(--grG), var(--grB), 1);  
+	--lgrR: calc(var(--grR) + 64);
+	--lgrG: calc(var(--grG) + 64);
+	--lgrB: calc(var(--grB) + 64);
+	--lgray: rgba(var(--lgrR), var(--lgrG), var(--lgrB), 1);
+	--xlgray: rgba(calc(var(--lgrR) + 32), calc(var(--lgrG) + 32), calc(var(--lgrB) + 32), 1);
+	  
+	--dgrR: calc(var(--grR) - 64);
+	--dgrG: calc(var(--grG) - 64);
+	--dgrB: calc(var(--grB) - 64); 
+	--dgray: rgba(var(--dgrR), var(--dgrG), var(--dgrB), 1);
+
+
+	/* BLOCK: RGB COLORS PIGMENTS & RGB COLOR VARIANTS. */
+	/* OBS: RGB = PRIMARY-FROM-LIGHT-COLORS. */  
+	
+	/* Red: Pure , Lite, eXtra-Lite, Dark, eXtra-Dark. */
+	--rR: 255;
+	--rG: 0;
+	--rB: 0;
+	--red: rgba(var(--rR), var(--rG), var(--rB), 1);
+	--lrR: calc(var(--rR) + 0);
+	--lrG: calc(var(--rG) + 64);
+	--lrB: calc(var(--rB) + 64);
+	--lred: rgba(var(--lrR), var(--lrG), var(--lrB), 1);
+	--xlrR: calc(var(--rR) + 0);
+	--xlrG: calc(var(--rG) + 128);
+	--xlrB: calc(var(--rB) + 128);
+	--xlred: rgba(var(--xlrR), var(--xlrG), var(--xlrB), 1);
+	--drR: calc(var(--rR) - 64);
+	--drG: calc(var(--rG) - 0);
+	--drB: calc(var(--rB) - 0);
+	--dred: rgba(var(--drR), var(--drG), var(--drB), 1);
+	--xdrR: calc(var(--rR) - 128);
+	--xdrG: calc(var(--rG) - 0);
+	--xdrB: calc(var(--rB) - 0);
+	--xdred: rgba(var(--xdrR), var(--xdrG), var(--xdrB), 1);
+
+	/* Green: Pure , Lite, eXtra-Lite, Dark, eXtra-Dark. */
+	--gR: 0;  
+	--gG: 255;  
+	--gB: 0;  
+	--green: rgba(var(--gR), var(--gG), var(--gB), 1);
+	--lgR: calc(var(--gR) + 64);
+	--lgG: calc(var(--gG) + 0);
+	--lgB: calc(var(--gB) + 64);
+	--lgreen: rgba(var(--lgR), var(--lgG), var(--lgB), 1);
+	--xlgR: calc(var(--gR) + 128);
+	--xlgG: calc(var(--gG) + 0);
+	--xlgB: calc(var(--gB) + 128);
+	--xlgreen: rgba(var(--xlgR), var(--xlgG), var(--xlgB), 1);
+	--dgR: calc(var(--gR) - 0);
+	--dgG: calc(var(--gG) - 64);
+	--dgB: calc(var(--gB) - 0);
+	--dgreen: rgba(var(--dgR), var(--dgG), var(--dgB), 1);
+	--xdgR: calc(var(--gR) - 0);
+	--xdgG: calc(var(--gG) - 128);
+	--xdgB: calc(var(--gB) - 0);
+	--xdgreen: rgba(var(--xdgR), var(--xdgG), var(--xdgB), 1);
+
+	/* Blue: Pure , Lite, eXtra-Lite, Dark, eXtra-Dark. */
+	--bR: 0;
+	--bG: 0;
+	--bB: 255;
+	--blue: rgba(var(--bR), var(--bG), var(--bB), 1);
+	--lbR: calc(var(--bR) + 56);
+	--lbG: calc(var(--bG) + 64);
+	--lbB: calc(var(--bB) + 0);
+	--lblue: rgba(var(--lbR), var(--lbG), var(--lbB), 1);
+	--xlbR: calc(var(--bR) + 112);
+	--xlbG: calc(var(--bG) + 128);
+	--xlbB: calc(var(--bB) + 0);
+	--xlblue: rgba(var(--xlbR), var(--xlbG), var(--xlbB), 1);
+	--dbR: calc(var(--bR) - 0);
+	--dbG: calc(var(--bG) - 0);
+	--dbB: calc(var(--bB) - 64);
+	--dblue: rgba(var(--dbR), var(--dbG), var(--dbB), 1);
+	--xdbR: calc(var(--bR) - 0);
+	--xdbG: calc(var(--bG) - 0);
+	--xdbB: calc(var(--bB) - 64);
+	--xdblue: rgba(var(--xdbR), var(--xdbG), var(--xdbB), 1);
+	
+	
+	/* BLOCK: CMY COLORS PIGMENTS & CMY COLOR VARIANTS. */
+	/* OBS: CMY = PRIMARY-FROM-INK-COLORS. */  
+	
+	/* Cyan: Pure, Lite, eXtra-Lite, Dark. */
+	--cR: 0;
+	--cG: 255;
+	--cB: 255;
+	--cyan: rgba(var(--cR), var(--cG), var(--cB), 1);
+	--lcR: calc(var(--cR) + 64);
+	--lcG: calc(var(--cG) + 0);
+	--lcB: calc(var(--cB) + 0);
+	--lcyan: rgba(var(--lcR), var(--lcG), var(--lcB), 1);
+	--xlcR: calc(var(--cR) + 128);
+	--xlcG: calc(var(--cG) + 0);
+	--xlcB: calc(var(--cB) + 0);
+	--xlcyan: rgba(var(--xlcR), var(--xlcG), var(--xlcB), 1);
+	--dcR: calc(var(--cR) - 0);
+	--dcG: calc(var(--cG) - 64);
+	--dcB: calc(var(--cB) - 64);
+	--dcyan: rgba(var(--dcR), var(--dcG), var(--dcB), 1);
+	--xdcR: calc(var(--cR) - 0);
+	--xdcG: calc(var(--cG) - 128);
+	--xdcB: calc(var(--cB) - 128);
+	--xdcyan: rgba(var(--xdcR), var(--xdcG), var(--xdcB), 1);
+	
+	/* Magenta: Pure, Lite, eXtra-Lite, Dark. */
+	--mR: 255;  
+	--mG: 0;  
+	--mB: 255;  
+	--magenta: rgba(var(--mR), var(--mG), var(--mB), 1);
+	--lmR: calc(var(--mR) + 0);
+	--lmG: calc(var(--mG) + 64);
+	--lmB: calc(var(--mB) + 0);
+	--lmagenta: rgba(var(--lmR), var(--lmG), var(--lmB), 1);
+	--xlmR: calc(var(--mR) + 0);
+	--xlmG: calc(var(--mG) + 128);
+	--xlmB: calc(var(--mB) + 0);
+	--xlmagenta: rgba(var(--xlmR), var(--xlmG), var(--xlmB), 1);
+	--dmR: calc(var(--mR) - 64);
+	--dmG: calc(var(--mG) - 0);
+	--dmB: calc(var(--mB) - 64);
+	--dmagenta: rgba(var(--dmR), var(--dmG), var(--dmB), 1);
+	--xdmR: calc(var(--mR) - 128);
+	--xdmG: calc(var(--mG) - 0);
+	--xdmB: calc(var(--mB) - 128);
+	--xdmagenta: rgba(var(--xdmR), var(--xdmG), var(--xdmB), 1);
+	
+	/* Yellow: Pure, Lite, eXtra-Lite, Dark, eXtra-Dark. */
+	--yR: 255;  
+	--yG: 255;  
+	--yB: 0;  
+	--yellow: rgba(var(--yR), var(--yG), var(--yB), 1);
+	--lyR: calc(var(--yR) + 0);
+	--lyG: calc(var(--yG) + 0);
+	--lyB: calc(var(--yB) + 64);
+	--lyellow: rgba(var(--lyR), var(--lyG), var(--lyB), 1);
+	--xlyR: calc(var(--yR) + 0);
+	--xlyG: calc(var(--yG) + 0);
+	--xlyB: calc(var(--yB) + 128);
+	--xlyellow: rgba(var(--xlyR), var(--xlyG), var(--xlyB), 1);
+	--dyR: calc(var(--yR) - 64);
+	--dyG: calc(var(--yG) - 64);
+	--dyB: calc(var(--yB) - 0);
+	--dyellow: rgba(var(--dyR), var(--dyG), var(--dyB), 1);
+	--xdyR: calc(var(--yR) - 128);
+	--xdyG: calc(var(--yG) - 128);
+	--xdyB: calc(var(--yB) - 0);
+	--xdyellow: rgba(var(--xdyR), var(--xdyG), var(--xdyB), 1);
+	
+	/* BLOCK: ORANGE PIGMENTS & ORANGE COLOR VIRIANTS. */
+	/* OBS: ORANGE IS NOT PRESENT IN OTHERS COLOR SYSTEMS ABOVE. */  
+	
+	/* Orange: Pure, Lite, eXtra-Lite, Dark, eXtra-Dark. */
+	--oR: 248;
+	--oG: 120;
+	--oB: 8;
+	--orange: rgba(var(--oR), var(--oG), var(--oB), 1);  
+	--loR: calc(var(--oR) + 4);
+	--loG: calc(var(--oG) + 20);
+	--loB: calc(var(--oB) + 16);
+	--lorange: rgba(var(--loR), var(--loG), var(--loB), 1);
+	--xloR: calc(var(--oR) + 8);
+	--xloG: calc(var(--oG) + 48);
+	--xloB: calc(var(--oB) + 32);
+	--xlorange: rgba(var(--xloR), var(--xloG), var(--xloB), 1);	
+	--doR: calc(var(--oR) - 20);
+	--doG: calc(var(--oG) - 16);
+	--doB: calc(var(--oB) - 4);
+	--dorange: rgba(var(--doR), var(--doG), var(--doB), 1);
+	--xdoR: calc(var(--oR) - 48);
+	--xdoG: calc(var(--oG) - 32);
+	--xdoB: calc(var(--oB) - 8);
+	--xdorange: rgba(var(--xdoR), var(--xdoG), var(--xdoB), 1);  
+
+
+	/* SPECIAL BLOCK: SET HERE YOUR FAVORITE COLOR, AND ITS COUNTERCOLOR. */
+	/* A kind of Petroil Blue. My favorite color. */  
+	--mycolorR: 68;
+	--mycolorG: 116;
+	--mycolorB: 138;
+	--mycolorA: 1;
+	--mycolor: rgba(var(--mycolorR), var(--mycolorG), var(--mycolorB), var(--mycolorA));
+	
+	/* A kind of Cooper Orange. My favorite countercolor. */	
+	--mycountercolorR: calc(calc(255 - var(--mycolorR)) + 8) ;
+	--mycountercolorG: calc(calc(255 - var(--mycolorG)) - 8) ;
+	--mycountercolorB: calc(calc(255 - var(--mycolorB)) - 8) ;
+	--mycountercolorA: 1;
+	--mycountercolor: rgba(var(--mycountercolorR), var(--mycountercolorG), var(--mycountercolorB), var(--mycountercolorA));
+	
+	
+	/* BLOCK: AUTOMATIC GENERATED SCALE OF TWO COLORS ABOVE (--MYCOLOR AND --MYCOUNTERCOLOR). */
+	/* MyColor eXtra-Dark. */  
+	--m-c-xdark: rgba(calc(255 - calc(calc(calc(255 - var(--mycolorR)) + 510) / 3)),
+		calc(255 - calc(calc(calc(255 - var(--mycolorG)) + 510) / 3)), calc(255 - calc(calc(calc(255 - var(--mycolorB)) + 510) / 3)), var(--mycolorA));
+	/* MyColor Dark. */  
+	--m-c-dark: rgba(calc(255 - calc(calc(calc(255 - var(--mycolorR)) + 250) / 2)),
+		calc(255 - calc(calc(calc(255 - var(--mycolorG)) + 250) / 2)), calc(255 - calc(calc(calc(255 - var(--mycolorB)) + 250) / 2)), var(--mycolorA));
+	/* MyColor Lite. */  
+	--m-c-lite: rgba(calc((var(--mycolorR) + 255) / 2), calc((var(--mycolorG) + 255) / 2), calc((var(--mycolorB) + 255) / 2), var(--mycolorA));
+	/* MyColor eXtra-Lite. */  
+	--m-c-xlite: rgba(calc((var(--mycolorR) + 510) / 3), calc((var(--mycolorG) + 510) / 3), calc((var(--mycolorB) + 510) / 3), var(--mycolorA));
+	
+	/* MyCounterColor eXtra-Dark. */  
+	--m-cc-xdark: rgba(calc(255 - calc(calc(calc(255 - var(--mycountercolorR)) + 500) / 3)),
+		calc(255 - calc(calc(calc(255 - var(--mycountercolorG)) + 510) / 3)),
+		calc(255 - calc(calc(calc(255 - var(--mycountercolorB)) + 520) / 3)), var(--mycountercolorA));
+	/* MyCounterColor Dark. */  
+	--m-cc-dark: rgba(calc(255 - calc(calc(calc(255 - var(--mycountercolorR)) + 220) / 2)),
+		calc(255 - calc(calc(calc(255 - var(--mycountercolorG)) + 230) / 2)),
+		calc(255 - calc(calc(calc(255 - var(--mycountercolorB)) + 240) / 2)), var(--mycountercolorA));
+	/* MyCounterColor Lite. */  
+	--m-cc-lite: rgba(calc((var(--mycountercolorR) + 255) / 2), calc((var(--mycountercolorG) + 255) / 2),
+		calc((var(--mycountercolorB) + 255) / 2), var(--mycountercolorA));
+	/* MyCounterColor eXtra-Lite. */  
+	--m-cc-xlite: rgba(calc((var(--mycountercolorR) + 510) / 3), calc((var(--mycountercolorG) + 510) / 3),
+		calc((var(--mycountercolorB) + 510) / 3), var(--mycountercolorA));
+	
+	
+	/* BLOCK: AUTOMATIC GENERATED BLENDS OF COLORS BASED ON "--MYCOLOR". */
+	/* Blend with --mycolor, Dark Red. */
+	--m-c-dark-R: rgba(
+		calc( calc( var(--mycolorR) + var(--drR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--drG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--drB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Dark Green. */
+	--m-c-dark-G: rgba(
+		calc( calc( var(--mycolorR) + var(--dgR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--dgG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--dgB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Dark Blue. */
+	--m-c-dark-B: rgba(
+		calc( calc( var(--mycolorR) + var(--dbR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--dbG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--dbB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Dark Cyan. */
+	--m-c-dark-C: rgba(calc((calc(var(--mycolorR) + 0 - 192)) / 2), calc((calc(var(--mycolorG) + var(--gG) - 128)) / 2),
+		calc((calc(var(--mycolorB) + var(--bB) - 128)) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Dark Yellow. */
+	--m-c-dark-Y: rgba(
+		calc( calc( var(--mycolorR) + var(--dyR) ) / 1.9 ),
+		calc( calc( var(--mycolorG) + var(--dyG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--dyB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Dark Magenta. */
+	--m-c-dark-M: rgba(calc((calc(var(--mycolorR) + var(--rR) - 192)) / 2), calc((calc(var(--mycolorG) + 0 - 128)) / 2),
+		calc((calc(var(--mycolorB) + var(--bB) - 192)) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Dark Orange. */
+	--m-c-dark-O: rgba(
+		calc( calc( var(--mycolorR) + var(--doR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--doG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--doB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Red. */
+	--m-c-nuan-R: rgba(
+		calc( calc( var(--mycolorR) + var(--rR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--rG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--rB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Green. */  
+	--m-c-nuan-G: rgba(calc((calc(var(--mycolorR) + var(--gR))) / 2), calc((calc(var(--mycolorG) + var(--gG))) / 2),
+		calc((calc(var(--mycolorB) + var(--gB))) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Blue. */  
+	--m-c-nuan-B: rgba(calc((calc(var(--mycolorR) + var(--bR))) / 2), calc((calc(var(--mycolorG) + var(--bG))) / 2),
+		calc((calc(var(--mycolorB) + var(--bB))) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Cyan. */  
+	--m-c-nuan-C: rgba(calc((calc(var(--mycolorR) + 0)) / 2), calc((calc(var(--mycolorG) + var(--gG))) / 2),
+		calc((calc(var(--mycolorB) + var(--bB))) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Yellow. */
+	--m-c-nuan-Y: rgba(
+		calc( calc(var(--mycolorR) + var(--yR) ) / 1.9 ),
+		calc( calc(var(--mycolorG) + var(--yG) ) / 2 ),
+		calc( calc(var(--mycolorB) + var(--yB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Magenta. */
+	--m-c-nuan-M: rgba(calc((calc(var(--mycolorR) + var(--rR))) / 2), calc((calc(var(--mycolorG) + 0)) / 2),
+		calc((calc(var(--mycolorB) + var(--bB))) / 2), var(--mycolorA));
+	/* Blend with --mycolor, Nuance of Orange. */
+	--m-c-nuan-O: rgba(
+		calc( calc( var(--mycolorR) + var(--oR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--oG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--oB) ) / 2 ), var(--mycolorA));
+	
+	/* Blend with --mycolor, Lite Red. */
+	--m-c-lite-R: rgba(calc((calc(var(--mycolorR) + var(--rR) + 255)) / 3), calc((calc(var(--mycolorG) + var(--rG) + 191)) / 3),
+		calc((calc(var(--mycolorB) + var(--rB) + 191)) / 3), var(--mycolorA));
+	/* Blend with --mycolor, Lite Green. */
+	--m-c-lite-G: rgba(
+		calc( calc( var(--mycolorR) + var(--lgR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--lgG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--lgB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Lite Blue. */
+	--m-c-lite-B: rgba(
+		calc( calc( var(--mycolorR) + var(--lbR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--lbG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--lbB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Lite Cyan. */
+	--m-c-lite-C: rgba(calc((calc(var(--mycolorR) +  0 +  191)) / 3), calc((calc(var(--mycolorG) + var(--gG) + 255)) / 3),
+		calc((calc(var(--mycolorB) + var(--bB) + 255)) / 3), var(--mycolorA));
+	/* Blend with --mycolor, Lite Yellow. */
+	--m-c-lite-Y: rgba(
+		calc( calc( var(--mycolorR) + var(--lyR) ) / 1.9 ),
+		calc( calc( var(--mycolorG) + var(--lyG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--lyB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Lite Magenta. */
+	--m-c-lite-M: rgba(
+		calc( calc( var(--mycolorR) + var(--lmR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--lmG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--lmB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, Lite Orange. */
+	--m-c-lite-O: rgba(
+		calc( calc( var(--mycolorR) + var(--loR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--loG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--loB) ) / 2 ), var(--mycolorA));
+	
+	/* Blend with --mycolor, eXtra-Lite Red. */
+	--m-c-xlite-R: rgba(
+		calc( calc( var(--mycolorR) + var(--xlrR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xlrG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlrB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Green. */
+	--m-c-xlite-G: rgba(
+		calc( calc( var(--mycolorR) + var(--xlgR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xlgG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlgB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Blue. */
+	--m-c-xlite-B: rgba(
+		calc( calc( var(--mycolorR) + var(--xlbR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xlbG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlbB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Cyan. */
+	--m-c-xlite-C: rgba(
+		calc( calc( var(--mycolorR) + var(--xlcR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xlcG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlcB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Yellow. */
+	--m-c-xlite-Y: rgba(
+		calc( calc( var(--mycolorR) + var(--xlyR) ) / 1.9 ),
+		calc( calc( var(--mycolorG) + var(--xlyG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlyB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Magenta. */
+	--m-c-xlite-M: rgba(
+		calc( calc( var(--mycolorR) + var(--xlmR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xlmG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xlmB) ) / 2 ), var(--mycolorA));
+	/* Blend with --mycolor, eXtra-Lite Orange. */
+	--m-c-xlite-O: rgba(
+		calc( calc( var(--mycolorR) + var(--xloR) ) / 2 ),
+		calc( calc( var(--mycolorG) + var(--xloG) ) / 2 ),
+		calc( calc( var(--mycolorB) + var(--xloB) ) / 2 ), var(--mycolorA));
+}
+/*EOF.ROPIMASI.*/
+
+
+
+
+
+
+
+
+
+

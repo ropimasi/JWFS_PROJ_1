@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+/* BLOCK: FORMS AND FIELDS PANELS.  */
+form {
+	margin: auto;
+	padding: 10px;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"],
+form select {
+	/* Shape & afin.s */
+	outline: none;
+	display: block;
+	margin: 4px auto;
+	padding: 10px;
+	width: 100%;
+	box-shadow: 2px 3px 4px 0px var(--shd-m-Clr);
+	/* Fonts & afins. */
+	font-family: 'Inconsolata', monospace;
+	font-weight: var(--f-w-normal); 
+	--font-size: var(--f-s-abitbigger);
+	font-size: var(--font-size);
+	line-height: var(--font-size) * 1.5;
+	/* Transitions & Its changed properties. */
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	/* Transitions Shapes & finishes. */
+	border: 1px solid var(--lgray);
+	background: var(--icewhite);
+	/* Transitions Fonts & afins. */
+	color: var(--dgray);
+}
+form input[type="text"].towCols,
+form input[type="email"].towCols,
+form input[type="password"].towCols,
+form input[type="file"].twoCols,
+form select.towCols {
+	display: inline;
+	width: 49%;
+}
+form input[type="text"]:read-only,
+form input[type="email"]:read-only,
+form input[type="password"]:read-only,
+form input[type="file"]:read-only {
+	background: var(--lgray);
+}
+form input[type="text"]:hover,
+form input[type="email"]:hover,
+form input[type="password"]:hover,
+form input[type="file"]:hover,
+form select:hover {
+	outline: none;
+	/* Transitions & Its changed properties. */
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out ;
+	/* Transitions Shapes & finishes. */
+	border: 1px solid var(--gray);
+	background: var(--m-c-xlite-Y);
+	/* Transitions Fonts & afins. */
+	color: var(--smoothblack);
+}
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="file"]:focus,
+form select:focus {
+	outline: none;
+	/* Transitions & Its changed properties. */
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out ;
+	/* Transitions Shapes & finishes. */
+	border: 1px solid var(--dgray);
+	background: var(--m-cc-xlite);
+	/* Transitions Fonts & afins. */
+	color: var(--black);
+}
+
+
+
+/* BLOCK: ...  */
+::-webkit-input-placeholder {
+	color: var(--gray);
+}
+
+::-ms-input-placeholder {
+	color: var(--gray);
+}
+
+:-moz-placeholder {
+	color: var(--gray);
+}
+
+::-moz-placeholder {
+	color: var(--gray);
+}
+/*EOF.ROPIMASI.*/

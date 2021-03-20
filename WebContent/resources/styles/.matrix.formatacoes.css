@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+@import url("cores.css");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* CSS rules to specify families:
+ * font-family: 'Montserrat', sans-serif;
+ * font-family: 'Inconsolata', monospace; */
+
+
+
+/******** ******** WARNINGS ******** ********
+ * 
+ * BEST READING WITH 128 COLS.
+ * 
+ ******** ******** HEADER ******** ********
+ * 
+ * LOGIN FORM SCREEN CSS LIBRARY.
+ *   - S
+ *   - S
+ *   - P
+ *   - A
+ *   
+ * AUTHOR: ROPIASI.
+ * VERSION: 20200406.
+ * 
+ ******** ******** ******** ******** ********/
+
+
+
+/******** SECTION... ********/
+
+/* BLOCK: BASIC ATRIBUTES RELATED TO DOM, BODY, AND ROOT SCOPE.  */
+* {
+	margin: 0px;
+	padding: 0px;
+	
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	
+	font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	
+	text-rendering: optimizeLegibility;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background: var(--mycolor);
+
+	font-family: 'Montserrat', sans-serif;
+	font-weight: var(--fw-n);
+	font-size: 16px;
+	color: var(--mycountercolor);	
+	line-height: 30px;
+}
+
+
+
+/* BLOCK: TAGS AND CLASSES FOR GENERAL PORPOSE.  */
+fieldset {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	border: 1px solid var(--lightgray);
+}
+.container {
+	margin: 50px auto;
+	padding: 20px;  
+	background: var(--offwhite);
+	
+	width: 95%;
+	max-width: 380px;
+	min-width: 180px;
+	height: 95%;
+	max-height: 600px;
+	min-height: 300px;  
+	position: relative;
+	box-shadow: 10px 10px 20px 2px var(--darkgray);
+
+	font-family: 'Montserrat', sans-serif;
+	font-weight: var(--fw-n);
+	font-size: 14px;
+	color: var(--mc-dark-B);
+	line-height: 26px;
+}
+.simple-resp-ctnr {
+	margin: 0px auto;
+	padding: 0px;  
+	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	position: relative;
+}
+
+
+
+/* BLOCK: IDs FOR LOGIN PANEL AND FIELDS.  */
+#login {
+	margin: auto;
+	padding: 10px;
+}
+
+#login h3 {
+	display: block;
+	margin: 10px 0px 10px 0px;
+	font-size: 20px;
+	font-weight: var(--fw-b);
+}
+
+#login h4 {
+	display: block;
+	margin: 10px 0px 10px 0px;
+	font-size: 14px;
+	font-weight: var(--fw-n);
+}
+
+
+#login input[type="text"],
+#login input[type="email"],
+#login input[type="tel"],
+#login input[type="url"],
+#login input[type="password"],
+#login textarea,
+#login button[type="submit"],
+#login button[type="reset"] {
+	margin: 10px auto 10px auto;
+	padding: 10px;
+	font-family: 'Inconsolata', monospace;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: var(--fw-n);
+	color: var(--smoothblack);
+	width: 100%;
+	outline: none;
+}
+#login button[type="submit"],
+#login button[type="reset"] {
+	font-size: 15px;
+	line-height: 22px;
+	cursor: pointer;
+	width: auto;
+	max-width: 49%;
+	min-width: 45%;
+	margin: 10px 5px;
+	padding: 10px;
+	border: 2px solid;
+	box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.4);
+}
+#login textarea {
+	height: 100px;
+	resize: none;
+}
+
+#login input[type="text"],
+#login input[type="email"],
+#login input[type="tel"],
+#login input[type="url"],
+#login input[type="password"],
+#login textarea {
+	display: block;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	border: 1px solid var(--lightgray);
+	background: var(--icewhite);  
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.4);
+}
+#login input[type="text"]:hover,
+#login input[type="email"]:hover,
+#login input[type="tel"]:hover,
+#login input[type="url"]:hover,
+#login input[type="password"]:hover,
+#login textarea:hover {
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+	border: 1px solid var(--mediumgray);
+	background: var(--mc-xlite-Y);
+}
+#login input[type="text"]:focus,
+#login input[type="email"]:focus,
+#login input[type="tel"]:focus,
+#login input[type="url"]:focus,
+#login input[type="password"]:focus,
+#login textarea:focus {
+	outline: none;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out ;
+	border: 1px solid var(--darkgray);
+	background: var(--mcc-xlite);  
+}
+
+
+#login button[type="submit"] {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--icewhite);
+	background: var(--mc-nuan-G);
+	border-color: var(--mc-dark-G);
+}
+#login button[type="submit"]:hover {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--white);
+	background: var(--mc-lite-G);
+	border-color: var(--mc-nuan-G);  
+}
+#login button[type="submit"]:focus {
+	outline: none;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--white);
+	background: var(--mc-lite-G);
+	border-color: var(--mc-nuan-G);  
+}
+#login button[type="submit"]:active {
+	outline: none;
+	box-shadow: inset 2px 2px 8px 0px var(--shd-m-Clr);
+}
+
+#login button[type="reset"] {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--icewhite);
+	background: var(--mc-nuan-R);
+	border-color: var(--mc-dark-R);
+}
+#login button[type="reset"]:hover {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--white);
+	background: var(--mc-lite-R);
+	border-color: var(--mc-nuan-R);  
+}
+#login button[type="reset"]:focus {
+	outline: none;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	color: var(--white);
+	background: var(--mc-lite-R);
+	border-color: var(--mc-nuan-R);  
+}
+#login button[type="reset"]:active {
+	outline: none;
+	box-shadow: inset 2px 2px 8px 0px var(--shd-m-Clr);
+}
+
+
+
+/******** SECTION... ********/
+
+/* BLOCK: ...  */
+::-webkit-input-placeholder {
+	color: var(--mediumgray);
+}
+
+::-ms-input-placeholder {
+	color: var(--mediumgray);
+}
+
+:-moz-placeholder {
+	color: var(--mediumgray);
+}
+
+::-moz-placeholder {
+	color: var(--mediumgray);
+}
