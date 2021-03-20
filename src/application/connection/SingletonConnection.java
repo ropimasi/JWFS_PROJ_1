@@ -11,7 +11,6 @@ public class SingletonConnection { // PostgreSQL-12 Porta 5432. // PostgreSQL-13
 	private static String urlDB =
 			"jdbc:postgresql://localhost:5432/jwfs_proj_1_db?createDatabaseIfNotExist=true&autoReconnect=true&useTimezone=true&serverTimezone=UTC";
 	
-	// &useSSL=false
 	private static String userDB = "postgres";
 	private static String passwordDB = "postgres";
 	private static Connection conn = null;
@@ -47,6 +46,7 @@ public class SingletonConnection { // PostgreSQL-12 Porta 5432. // PostgreSQL-13
 			
 			if ((conn == null) || (conn.isClosed())) {
 				Class.forName("org.postgresql.Driver");
+				
 				conn = DriverManager.getConnection(urlDB, userDB, passwordDB);
 				conn.setAutoCommit(false);
 			}

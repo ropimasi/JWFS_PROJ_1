@@ -12,17 +12,16 @@ import javax.servlet.annotation.WebFilter;
 import application.connection.SingletonConnection;
 
 
-
 @WebFilter(urlPatterns = {"/*"})
 public class FilterAll implements javax.servlet.Filter {
 	
 	private static Connection conn;
 	
 	
+	
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		
-		/* FIXME: can not create-open ?  SingletonConnection.getConnection();  */
 		if (conn == null) { conn = SingletonConnection.getConnection(); }
 		
 	}
