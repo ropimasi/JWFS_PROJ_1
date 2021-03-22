@@ -14,8 +14,8 @@ public class UserCompactDTO {
 	/* Private Class' attributes: */
 	private long id = 0;
 	private String fullName = "";
-	private String userName = "";
-	private String userLevel = "";
+	private String loginName = "";
+	private String level = "";
 	private String pictureBase64 = "";
 	private String pictureContentType = "";
 	
@@ -64,19 +64,19 @@ public class UserCompactDTO {
 	
 	
 	
-	public String getUserName() { return userName; }
+	public String getLoginName() { return loginName; }
 	
 	
 	
-	public void setUserName(String userName) { this.userName = userName; }
+	public void setLoginName(String loginName) { this.loginName = loginName; }
 	
 	
 	
-	public String getUserLevel() { return userLevel; }
+	public String getLevel() { return level; }
 	
 	
 	
-	public void setUserLevel(String userLevel) { this.userLevel = userLevel; }
+	public void setLevel(String level) { this.level = level; }
 	
 	
 	

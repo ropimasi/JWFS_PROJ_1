@@ -7,9 +7,11 @@ public class EmailEntity {
 	public static final int EADDRESS_MIN_LEN = 5;
 	public static final int EADDRESS_MAX_LEN = 98;
 	
+	/* FUTHER: To analyze whether to dismiss 'id' and get eAddress as primary key, unique. */
 	private Long id = 0L;
 	private String eAddress = "";
-	private long userId = 0L;
+	/* FURTHER: To refactor EmailEntity <-> UserEntity to OOP approach. */
+	private long userId = 0L; // OOP: it would be a 'object' geting its id attribute as foreign key.
 	
 	
 	

@@ -9,9 +9,7 @@ public class PhoneEntity {
 	public static final int AREACODE_MIN_LEN = 1;
 	public static final int AREACODE_MAX_LEN = 4;
 	public static final int NUMBER_MIN_LEN = 3;
-	public static final int NUMBER_MAX_LEN = 10;
-	// public static final int TYPE_MIN_LEN = 3;
-	// public static final int TYPE_MAX_LEN = 8;
+	public static final int NUMBER_MAX_LEN = 12;
 	
 	/* Private Class' attributes: */
 	private long id = 0; // Primary key on DB;
@@ -19,6 +17,7 @@ public class PhoneEntity {
 	private String areaCode = "";
 	private String number = "";
 	private PhoneTypeEnum type;
+	/* FURTHER: To refactor PhoneEntity <-> UserEntity to OOP approach. */
 	private long userId = 0; // Foreign Key on DB.
 	
 	

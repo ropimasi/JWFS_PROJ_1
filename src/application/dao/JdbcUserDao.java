@@ -42,9 +42,9 @@ public class JdbcUserDao {
 				UserEntity tmpUser = new UserEntity();
 				tmpUser.setId(rsList.getString("id"));
 				tmpUser.setFullName(rsList.getString("full_name"));
-				tmpUser.setUserName(rsList.getString("user_name"));
-				tmpUser.setPassword(rsList.getString("password"));
-				tmpUser.setUserLevel(rsList.getString("user_level"));
+				tmpUser.setLoginName(rsList.getString("login_name"));
+				tmpUser.setLoginPassword(rsList.getString("login_password"));
+				tmpUser.setLevel(rsList.getString("level"));
 				/* Further improvement: Entity needs architecture review for 'addresses'. */
 				tmpUser.setAddrPostalCode(rsList.getString("addr_postal_code"));
 				tmpUser.setAddrFu(rsList.getString("addr_fu"));
@@ -87,9 +87,9 @@ public class JdbcUserDao {
 				UserEntity returnUser = new UserEntity();
 				returnUser.setId(rsSeekId.getLong("id"));
 				returnUser.setFullName(rsSeekId.getString("full_name"));
-				returnUser.setUserName(rsSeekId.getString("user_name"));
-				returnUser.setPassword(rsSeekId.getString("password"));
-				returnUser.setUserLevel(rsSeekId.getString("user_level"));
+				returnUser.setLoginName(rsSeekId.getString("login_name"));
+				returnUser.setLoginPassword(rsSeekId.getString("login_password"));
+				returnUser.setLevel(rsSeekId.getString("level"));
 				/* Further improvement: Entity needs architecture review for 'addresses'. */
 				returnUser.setAddrPostalCode(rsSeekId.getString("addr_postal_code"));
 				returnUser.setAddrFu(rsSeekId.getString("addr_fu"));
@@ -132,9 +132,9 @@ public class JdbcUserDao {
 				UserEntity returnUser = new UserEntity();
 				returnUser.setId(rsSeekUserName.getLong("id"));
 				returnUser.setFullName(rsSeekUserName.getString("full_name"));
-				returnUser.setUserName(rsSeekUserName.getString("user_name"));
-				returnUser.setPassword(rsSeekUserName.getString("password"));
-				returnUser.setUserLevel(rsSeekUserName.getString("user_level"));
+				returnUser.setLoginName(rsSeekUserName.getString("login_name"));
+				returnUser.setLoginPassword(rsSeekUserName.getString("login_password"));
+				returnUser.setLevel(rsSeekUserName.getString("level"));
 				/* Further improvement: Entity needs architecture review for 'addresses'. */
 				returnUser.setAddrPostalCode(rsSeekUserName.getString("addr_postal_code"));
 				returnUser.setAddrFu(rsSeekUserName.getString("addr_fu"));
@@ -180,7 +180,7 @@ public class JdbcUserDao {
 	
 	public void insert(UserEntity user) {
 		
-		String sqlInsert = "INSERT INTO users (full_name, user_name, password, user_level, "
+		String sqlInsert = "INSERT INTO users (full_name, login_name, login_password, level, "
 				+ "addr_postal_code, addr_fu, addr_city, addr_neighborhood, addr_via, addr_number, "
 				+ "addr_complement, picture_base64, picture_content_type) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -188,9 +188,9 @@ public class JdbcUserDao {
 		try {
 			PreparedStatement sttmntInsert = conn.prepareStatement(sqlInsert);
 			sttmntInsert.setString(1, user.getFullName());
-			sttmntInsert.setString(2, user.getUserName());
-			sttmntInsert.setString(3, SymmCrypSamp.doIt(user.getPassword()));
-			sttmntInsert.setString(4, user.getUserLevel());
+			sttmntInsert.setString(2, user.getLoginName());
+			sttmntInsert.setString(3, SymmCrypSamp.doIt(user.getLoginPassword()));
+			sttmntInsert.setString(4, user.getLevel());
 			/* Further improvement: Entity needs architecture review for 'addresses'. */
 			sttmntInsert.setString(5, user.getAddrPostalCode());
 			sttmntInsert.setString(6, user.getAddrFu());
@@ -227,7 +227,7 @@ public class JdbcUserDao {
 	public void update(UserEntity user) {
 		
 		String sqlUpdate =
-				"UPDATE users SET full_name = ?, user_name = ?, password = ?, user_level = ?, addr_postal_code = ?"
+				"UPDATE users SET full_name = ?, login_name = ?, login_password = ?, level = ?, addr_postal_code = ?"
 						+ ", addr_fu = ?, addr_city = ?, addr_neighborhood = ?, addr_via = ?, addr_number = ?"
 						+ ", addr_complement = ?, picture_base64 = ?, picture_content_type = ?"
 						+ "WHERE (id = ?);";
@@ -235,9 +235,9 @@ public class JdbcUserDao {
 		try {
 			PreparedStatement sttmntUpdate = conn.prepareStatement(sqlUpdate);
 			sttmntUpdate.setString(1, user.getFullName());
-			sttmntUpdate.setString(2, user.getUserName());
-			sttmntUpdate.setString(3, SymmCrypSamp.doIt(user.getPassword()));
-			sttmntUpdate.setString(4, user.getUserLevel());
+			sttmntUpdate.setString(2, user.getLoginName());
+			sttmntUpdate.setString(3, SymmCrypSamp.doIt(user.getLoginPassword()));
+			sttmntUpdate.setString(4, user.getLevel());
 			/* Further improvement: Entity needs architecture review for 'addresses'. */
 			sttmntUpdate.setString(5, user.getAddrPostalCode());
 			sttmntUpdate.setString(6, user.getAddrFu());

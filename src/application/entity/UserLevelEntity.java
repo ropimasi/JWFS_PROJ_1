@@ -12,17 +12,19 @@ public class UserLevelEntity {
 	/* Constants containing standards values from Business-and-Technical-Rules: */
 	public static final int NAME_MIN_LEN = 3;
 	public static final int NAME_MAX_LEN = 16;
-	private static final JdbcUserLevelDao dao = new JdbcUserLevelDao();
+	
+	/* Private Class' attributes: */
+	private static final JdbcUserLevelDao ulDAO = new JdbcUserLevelDao();
 	private static List<String> namesList = new ArrayList<String>();
 	
-	/* Static-Constructor, for statics classes only, before Constructor. */
+	/* Static-Constructor, before Constructor. */
 	static {
-		setNamesList(dao.list());
+		setNamesList(ulDAO.list());
 	}
 	
 	
 	
-	/* Constructor of insrances. */
+	/* Constructor of instances. */
 	public UserLevelEntity() {}
 	
 	

@@ -33,14 +33,14 @@ public final class ValidationService {
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'userName' property is EMPTY, impratical: INVALID !");
 		}
-		else if (userName.length() < UserEntity.USERNAME_MIN_LEN) {
+		else if (userName.length() < UserEntity.LOGINNAME_MIN_LEN) {
 			/* According technical rules: ... */
 			/* ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT VALUES. */
 			returnVR.setCode(-3);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'userName' property is too short, against rules: INVALID !");
 		}
-		else if (userName.length() > UserEntity.USERNAME_MAX_LEN) {
+		else if (userName.length() > UserEntity.LOGINNAME_MAX_LEN) {
 			/* According technical rules: ... */
 			/* ALWAYS SEE Entities Classes FOR KNOW THEIRS STANDARD CONSTANT VALUES. */
 			returnVR.setCode(-4);
@@ -104,12 +104,12 @@ public final class ValidationService {
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is empty, impratical: INVALID !");
 		}
-		else if (password.length() < UserEntity.PASSWORD_MIN_LEN) {
+		else if (password.length() < UserEntity.LOGINPASSWORD_MIN_LEN) {
 			returnVR.setCode(-3);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is too short, against rules: INVALID !");
 		}
-		else if (password.length() > UserEntity.PASSWORD_MAX_LEN) {
+		else if (password.length() > UserEntity.LOGINPASSWORD_MAX_LEN) {
 			returnVR.setCode(-4);
 			returnVR.setType("Error");
 			returnVR.setDescription("The 'password' property is too long, against rules: INVALID !");
@@ -138,12 +138,12 @@ public final class ValidationService {
 		// First, test validating 'userName'.
 		/* Further TODO: refatorar otimizando para 1 parãmetro conforme regra de negocio
 		 * do produto (o que eu espero de uma validacao de user?) */
-		tmpVR = validateUserName(user.getUserName(), user.getId());
+		tmpVR = validateUserName(user.getLoginName(), user.getId());
 		// Add to the List one ValidationResult about 'userName'.
 		returnVRS.add(tmpVR);
 		
 		// Now, second, test validating about 'password'.
-		tmpVR = validatePassword(user.getPassword()); // SymmCrypSamp.undoIt().
+		tmpVR = validatePassword(user.getLoginPassword()); // SymmCrypSamp.undoIt().
 		// Add to the List one ValidationResult about 'password'.
 		returnVRS.add(tmpVR);
 		

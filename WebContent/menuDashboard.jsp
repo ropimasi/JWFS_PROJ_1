@@ -19,7 +19,7 @@
 	<!-- JSP directives/notations to page functionality. -->
 	<%@page info="Menu and dashboard page to the Java Web Full Stack didatic application, by ROPIMASI."%>
 	<%@page errorPage="resources/error-pages/default-error.jsp"%>
-	<%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>	
+	<%-- @taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"--%>	
 	
 	
 	<!-- JAVA directives/imports to minor processing in the presentation of the frontend. -->

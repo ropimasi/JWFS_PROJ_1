@@ -4,43 +4,74 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-lib.css">
-	<title>Cadastro de níveis de usuários - JAVA WEB COMPLETO MÓDULO 20</title>
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-colors-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-fonts-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-root-vars-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-basics-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-grids-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-buttons-lib.css">
+	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-forms-lib.css">
+	
+	<%! String THIS_PAGE = "Users Levels Registry"; %>
+	<title><%= THIS_PAGE %> - <jsp:include page="resources/pages-parts/title.jsp" /></title>
+	
+	<!-- Add JQuery Lib -->
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
-
-	<!-- /* TODO: Somente usuário com level "Admin" pode alterar. Demais só visualizar. */ -->
-
-	<!-- JSP notations to page functionality. -->
-	<%@page info="Página de cadastrar no níveis possíveis para usuários e listar os já existentes."%>
+	<!--
+	FURTHER:
+	Todos usuários visualizam:
+	Usuário "Visitor" somente visualiza;
+	Usuário "Operator" edita "levels" de seu próprio "Id";
+	Usuário "Maintenence" edita "levels" de seu próprio "Id" e "Id" com "levels" = "Operator" e "Visitor";
+	Usuário "Admin" edita todos.	
+	-->
+	
+	
+	<!-- JSP directives/notations to page functionality. -->
+	<%@page info="Page to registry new users levels and listing the existing ones, by ROPIMASI."%>
 	<%@page errorPage="resources/error-pages/default-error.jsp"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-	<!-- JAVA importações para pequenos processamentos na apresentação do frontend. -->
+	
+	
+	<!-- JAVA directives/imports to minor processing in the presentation of the frontend. -->
 	<%@page import="application.service.ValidationResult"%>
 	<%@page import="application.service.ValidationResultSet"%>
-	<!--  %@page import="application.service.SymmCrypSamp"% -->
-	<%@page import="application.entity.UserLevelEntity"%>
+	<%-- <%@page import="application.service.SymmCrypSamp"%> --%>
 	<%@page import="application.entity.UserEntity"%>
+	<%@page import="application.entity.dto.UserCompactDTO"%>
+	<%@page import="application.entity.UserLevelEntity"%>
+	<%-- <%@page import="application.entity.PhoneEntity"%> --%>
+	
+	
+	
 	<%
+	/* BEGIN ASR-URI TECHNIQUE. */
 		HttpSession loggedSession = request.getSession();
-		UserEntity loggedUser = (UserEntity) loggedSession.getAttribute("loggedUser");
-		long loggedUsesrIdFromParam;
 		
-		loggedUsesrIdFromParam = (request.getParameter("userId") != null) ?
-				Long.parseLong(request.getParameter("userId")) : 0L ;
+		/* Subtitle: lucdfsa = loggedUserCompactDTOFromSessionAttrib. */
+		UserCompactDTO lucdfsa = (UserCompactDTO) loggedSession.getAttribute("lucdsa");
 		
-		if (loggedUsesrIdFromParam != loggedUser.getId()) {
+		/* Subtitle: luifp = loggedUsesrIdFromParam. */
+		long luifp = ((request.getParameter("loggedUserIdParam") != null) && (!request.getParameter("loggedUserIdParam").isEmpty()))
+				? Long.parseLong(request.getParameter("loggedUserIdParam")) : -1L ;
+				
+		if ((lucdfsa == null) || (luifp != lucdfsa.getId())) {
 			%>
+			<!-- FURTHER: link to back; -->
 			<jsp:forward page="resources/error-pages/asr-uri-error.jsp">
 				<jsp:param name="" value="" />
 			</jsp:forward>
 			<%
 		}
+	/* END ASR-URI TECHNIQUE. */
 	%>
+	
 	
 	
 	<!-- Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
@@ -63,6 +94,7 @@
 	<!-- /FIM Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
 	
 	
+	
 	<!-- Início do layout web no navegador propriamente dito. -->
 	<!-- Barra de comandos superior. -->
 	<jsp:include page="resources/pages-parts/topNavBar.jsp" />
@@ -71,7 +103,7 @@
 	
 	<!-- Container do conteudo principal. -->
 	<div class="container-main">
-		<h2>Cadastro de níveis de usuários</h2>
+		<h2><%= THIS_PAGE %></h2>
 		
 		<p>&nbsp;</p>
 

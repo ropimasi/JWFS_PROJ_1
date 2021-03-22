@@ -24,7 +24,7 @@ public class JdbcLoginDao {
 	
 	
 	
-	public UserCompactDTO validateLogin(String userName, String userPassword) {
+	public UserCompactDTO validateLogin(String loginName, String loginPassword) {
 		/* Surely, it's a very simple, rudimentary way of implementation of
 		 * authentication without cryptography. It's a basic programming propose,
 		 * focused on connection. */
@@ -41,8 +41,7 @@ public class JdbcLoginDao {
 				System.out.println();
 			}
 			
-			String sqlSeekUser = "SELECT * FROM users WHERE (user_name = '" + userName + "') AND (password = '"
-					+ SymmCrypSamp.doIt(userPassword) + "')";
+			String sqlSeekUser = "SELECT * FROM users WHERE (login_name = '" + loginName + "') AND (login_password = '" + loginPassword + "')";  /* SymmCrypSamp.doIt(userPassword) */
 			PreparedStatement sttmnt = conn.prepareStatement(sqlSeekUser);
 			rs = sttmnt.executeQuery();
 		}
@@ -56,8 +55,8 @@ public class JdbcLoginDao {
 			if (rs.next()) {
 				returnUser.setId(rs.getLong("id"));
 				returnUser.setFullName(rs.getString("full_name"));
-				returnUser.setUserName(rs.getString("user_name"));
-				returnUser.setUserLevel(rs.getString("user_level"));
+				returnUser.setLoginName(rs.getString("login_name"));
+				returnUser.setLevel(rs.getString("level"));
 				returnUser.setPictureBase64(rs.getString("picture_base64"));
 				returnUser.setPictureBase64(rs.getString("picture_content_type"));
 				return returnUser;

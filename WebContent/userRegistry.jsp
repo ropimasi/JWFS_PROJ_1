@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-colors-lib.css">
@@ -13,26 +14,30 @@
 	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-grids-lib.css">
 	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-buttons-lib.css">
 	<link rel="stylesheet" type="text/css" href="resources/styles/jwc-style-forms-lib.css">
-	<title>Users Registry - <jsp:include page="resources/pages-parts/title.jsp" /></title>
+	<%! String THIS_PAGE = "Users Registry"; %>
+	<title><%= THIS_PAGE %> - <jsp:include page="resources/pages-parts/title.jsp" /></title>
+	
 
 	<!-- Add JQuery Lib -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 <body>
-
-	<!-- 
-	/* FURTHER TODO: */
+	<!--
+	FURTHER:
 	Todos usuários visualizam:
 	Usuário "Visitor" somente visualiza;
 	Usuário "Operator" edita "levels" de seu próprio "Id";
 	Usuário "Maintenence" edita "levels" de seu próprio "Id" e "Id" com "levels" = "Operator" e "Visitor";
 	Usuário "Admin" edita todos.	
 	-->
+	
+	
 
 	<!-- JSP directives/notations to page functionality. -->
 	<%@page info="Page to registry new users and listing the existing ones, by ROPIMASI."%>
 	<%@page errorPage="resources/error-pages/default-error.jsp"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 	
 	
 	<!-- JAVA directives/imports to minor processing in the presentation of the frontend. -->
@@ -43,6 +48,7 @@
 	<%@page import="application.entity.UserLevelEntity"%>
 	<%@page import="application.entity.dto.UserCompactDTO"%>
 	<%@page import="application.entity.PhoneEntity"%>
+	
 	
 	
 	<%
@@ -58,6 +64,7 @@
 				
 		if ((lucdfsa == null) || (luifp != lucdfsa.getId())) {
 			%>
+			<!-- FURTHER: link to back; -->
 			<jsp:forward page="resources/error-pages/asr-uri-error.jsp">
 				<jsp:param name="" value="" />
 			</jsp:forward>
@@ -67,19 +74,21 @@
 	%>
 	
 	
+	
 	<%
-	/* PRE PROCESSAMENTO DE "$3NH@" PARA OS CAMPOS EM EDIÇÃO: */
-	/* ESTE BLOCO É TEMPORÁRIO, ATÉ FUTURA VERSÃO TER SISTEMA DE SENHA ASYMMETRIC. */
-	if (request.getAttribute("savingEditingUser") != null) {
-		if (request.getAttribute("lastAction") == "edit") {
-			UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
-			request.setAttribute("savingEditingUser_password_decrypted", SymmCrypSamp.undoIt(preProcessedUser.getPassword()));
-		} else {
-			UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
-			request.setAttribute("savingEditingUser_password_decrypted", preProcessedUser.getPassword());
+		/* PRE PROCESSAMENTO DE "$3NH@" PARA OS CAMPOS EM EDIÇÃO: */
+		/* ESTE BLOCO É TEMPORÁRIO, ATÉ FUTURA VERSÃO TER SISTEMA DE SENHA ASYMMETRIC. */
+		if (request.getAttribute("savingEditingUser") != null) {
+			if (request.getAttribute("lastAction") == "edit") {
+		UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
+		request.setAttribute("savingEditingUser_password_decrypted", SymmCrypSamp.undoIt(preProcessedUser.getLoginPassword()));
+			} else {
+		UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
+		request.setAttribute("savingEditingUser_password_decrypted", preProcessedUser.getLoginPassword());
+			}
 		}
-	}
 	%>
+	
 	
 	
 	<!-- Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
@@ -87,10 +96,10 @@
 		/* Based on Business and Technicals Rules: */
 		const FULLNAME_MIN_LEN = ${application.entity.UserEntity.FULLNAME_MIN_LEN} ;
 		const FULLNAME_MAX_LEN = ${application.entity.UserEntity.FULLNAME_MAX_LEN} ;
-		const USERNAME_MIN_LEN = ${application.entity.UserEntity.USERNAME_MIN_LEN} ;
-		const USERNAME_MAX_LEN = ${application.entity.UserEntity.USERNAME_MAX_LEN} ;
-		const PASSWORD_MIN_LEN = ${application.entity.UserEntity.PASSWORD_MIN_LEN} ;
-		const PASSWORD_MAX_LEN = ${application.entity.UserEntity.PASSWORD_MAX_LEN} ;
+		const LOGINNAME_MIN_LEN = ${application.entity.UserEntity.LOGINNAME_MIN_LEN} ;
+		const LOGINNAME_MAX_LEN = ${application.entity.UserEntity.LOGINNAME_MAX_LEN} ;
+		const LOGINPASSWORD_MIN_LEN = ${application.entity.UserEntity.LOGINPASSWORD_MIN_LEN} ;
+		const LOGINPASSWORD_MAX_LEN = ${application.entity.UserEntity.LOGINPASSWORD_MAX_LEN} ;
 
 		function validarCampos() {
 			if ((document.getElementById('fullName').value.length < FULLNAME_MIN_LEN)
@@ -98,15 +107,15 @@
 				alert('Campo \'Full Name\' com comprimento inválido! (mín:'
 						+ FULLNAME_MIN_LEN + ' e máx:' + FULLNAME_MAX_LEN + ')');
 				return false;
-			} else if ((document.getElementById('userName').value.length < USERNAME_MIN_LEN)
-					|| (document.getElementById('userName').value.length > USERNAME_MAX_LEN)) {
+			} else if ((document.getElementById('userName').value.length < LOGINNAME_MIN_LEN)
+					|| (document.getElementById('userName').value.length > LOGINNAME_MAX_LEN)) {
 				alert('Campo \'User Name\' com comprimento inválido! (mín:'
-						+ USERNAME_MIN_LEN + ' e máx:' + USERNAME_MAX_LEN + ')');
+						+ LOGINNAME_MIN_LEN + ' e máx:' + LOGINNAME_MAX_LEN + ')');
 				return false;
-			} else if ((document.getElementById('password').value.length < PASSWORD_MIN_LEN)
-					|| (document.getElementById('password').value.length > PASSWORD_MAX_LEN)) {
+			} else if ((document.getElementById('password').value.length < LOGINPASSWORD_MIN_LEN)
+					|| (document.getElementById('password').value.length > LOGINPASSWORD_MAX_LEN)) {
 				alert('Campo \'Password\' com comprimento inválido! (mín:'
-						+ PASSWORD_MIN_LEN + ' e máx:' + PASSWORD_MAX_LEN + ')');
+						+ LOGINPASSWORD_MIN_LEN + ' e máx:' + LOGINPASSWORD_MAX_LEN + ')');
 				return false;
 			} else {
 				//alert('Campos válidos!');
@@ -115,6 +124,7 @@
 		}
 	</script>
 	<!-- /FIM Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
+
 
 
 	<!-- Script para cepWebService. -->
@@ -142,6 +152,7 @@
 		}
 	</script>
 	<!-- /FIM Script para cepWebService. -->
+	
 	
 	
 	<!-- Script para mostrar userPicture. -->
@@ -174,14 +185,16 @@
 	<!-- /FIM Script mostrar userPicture. -->
 	
 	
+	
 	<!-- Início do layout web no navegador propriamente dito. -->
 	<!-- Barra superior de comandos. -->
 	<jsp:include page="resources/pages-parts/topNavBar.jsp" />
 
 
+
 	<!-- Container do conteúdo principal. -->
 	<div class="container-main">
-		<h2>Cadastro de usuários</h2>
+		<h2><%= THIS_PAGE %></h2>
 		
 		<p>&nbsp;</p>
 		
@@ -247,7 +260,7 @@
 					<input type="text" id="fullName" name="fullName" placeholder="User's Full Name..." value="${savingEditingUser.fullName}" tabindex="1" required autofocus>
 				</div>
 				<div class="ga-user-name">
-					<input type="text" id="userName" name="userName" placeholder="User's Name..." value="${savingEditingUser.userName}" tabindex="2" required>
+					<input type="text" id="userName" name="userName" placeholder="User's Name..." value="${savingEditingUser.loginName}" tabindex="2" required>
 				</div>
 				<div class="ga-user-pass">
 					<input type="password" id="password" name="password" placeholder="Password..." value="${savingEditingUser_password_decrypted}" tabindex="3" required>
@@ -258,7 +271,7 @@
 					<!-- FIXME: Aqui ainda há uma melhoria a ser feita. Mesmo após modificar a lista de 'levels'
 					no B.D., esta página está carregando a mesma lista antiga/anterior de 'levels'.  -->
 					<c:forEach var="forLevel" items="${UserLevelEntity.getNamesList()}">
-						<option value="${forLevel}" <c:if test="${forLevel == savingEditingUser.userLevel}">selected</c:if>>
+						<option value="${forLevel}" <c:if test="${forLevel == savingEditingUser.level}">selected</c:if>>
 							${forLevel}
 						</option>
 					</c:forEach>
@@ -333,7 +346,7 @@
 							<div class="w3-third containerCellRegistry">
 								<div class="labelCellRegistry">Nível de Usuário</div>
 								<div class="dataCellRegistry">
-									${forUser.userLevel}
+									${forUser.level}
 								</div>
 							</div>
 						</div>
@@ -342,13 +355,13 @@
 							<div class="w3-half containerCellRegistry">
 								<div class="labelCellRegistry">Nome de Usuário</div>
 								<div class="dataCellRegistry">
-									${forUser.userName}
+									${forUser.loginName}
 								</div>
 							</div>
 							<div class="w3-half containerCellRegistry">
 								<div class="labelCellRegistry">Senha</div>
 								<div class="dataCellRegistry">
-									${forUser.password}
+									${forUser.loginPassword}
 								</div>
 							</div>
 						</div>

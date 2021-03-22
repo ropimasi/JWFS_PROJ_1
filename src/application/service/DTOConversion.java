@@ -14,8 +14,8 @@ public abstract class DTOConversion {
 		UserCompactDTO returnObj = new UserCompactDTO();
 		returnObj.setId(uE.getId());
 		returnObj.setFullName(uE.getFullName());
-		returnObj.setUserName(uE.getUserName());
-		returnObj.setUserLevel(uE.getUserLevel());
+		returnObj.setLoginName(uE.getLoginName());
+		returnObj.setLevel(uE.getLevel());
 		returnObj.setPictureBase64(uE.getPictureBase64String());
 		returnObj.setPictureContentType(uE.getPictureContentType());
 		return returnObj;

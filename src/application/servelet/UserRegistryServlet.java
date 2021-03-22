@@ -87,9 +87,9 @@ public class UserRegistryServlet extends HttpServlet {
 				UserEntity userToSave = new UserEntity();
 				userToSave.setId(request.getParameter("id"));
 				userToSave.setFullName(request.getParameter("fullName"));
-				userToSave.setUserName(request.getParameter("userName"));
-				userToSave.setPassword(request.getParameter("password"));
-				userToSave.setUserLevel(request.getParameter("userLevel"));
+				userToSave.setLoginName(request.getParameter("userName"));
+				userToSave.setLoginPassword(request.getParameter("password"));
+				userToSave.setLevel(request.getParameter("userLevel"));
 				userToSave.setAddrPostalCode(request.getParameter("addrPostalCode"));
 				userToSave.setAddrFu(request.getParameter("addrFu"));
 				userToSave.setAddrCity(request.getParameter("addrCity"));

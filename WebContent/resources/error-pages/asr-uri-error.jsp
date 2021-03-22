@@ -2,20 +2,23 @@
 
 <!DOCTYPE html>
 <html>
-
-
-<head>
-	<meta charset="UTF-8">
-	<title>[Página padrão de erro] JWC-MOD20</title>
-</head>
-
-
-<body bgcolor="#ccd">
-	<%@ page info="Página padrão de erros." %>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+		<%! String THIS_PAGE = "ASR-URI ERROR PAGE"; %>
+		<title><%= THIS_PAGE %> - <jsp:include page="../pages-parts/title.jsp" /></title>
+	</head>
+<body bgcolor="#DFB">
+	<%@ page info="" %>
 	<%@ page isErrorPage="true" %>
 		
-	<h2>JWC-MOD20 página de erro ASR-URI:</h2>
-	<h3>Access Security Requirements to this URI fails.</h3>
+	<h2>JWFS PROJ 1: Default error page for <%= THIS_PAGE %>.</h2>
 	<h4>Exception = <%= exception %>.</h4>
+	
+	<p><br/></p>
+	
+	<!-- FURTHER: link to back; -->
+	<%-- <h3> <a href="${voltarPara}">Voltar</a> </h3> --%>
+	
 </body>
 </html>
