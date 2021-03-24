@@ -57,6 +57,8 @@ public class UserRegistryServlet extends HttpServlet {
 		request.setAttribute("savingEditingUser;", null);
 		// null -> app not in edit mode, otherwise, contents an user (entity) to edit.
 		
+		
+		
 		/* ### INÍCIO - TÉCNICA DE ASR-URI ### */
 		HttpSession loggedSession = request.getSession();
 		
@@ -75,6 +77,8 @@ public class UserRegistryServlet extends HttpServlet {
 			reqDisp.forward(request, response);
 		}
 		/* ### FIM - TÉCNICA DE ASR-URI ### */
+		
+		
 		
 		/* Dependencies: Let a temp objects instantiated fot several uses below. */
 		JdbcUserDao userDAO = new JdbcUserDao();

@@ -80,11 +80,12 @@
 		/* ESTE BLOCO É TEMPORÁRIO, ATÉ FUTURA VERSÃO TER SISTEMA DE SENHA ASYMMETRIC. */
 		if (request.getAttribute("savingEditingUser") != null) {
 			if (request.getAttribute("lastAction") == "edit") {
-		UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
-		request.setAttribute("savingEditingUser_password_decrypted", SymmCrypSamp.undoIt(preProcessedUser.getLoginPassword()));
+				UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
+				request.setAttribute("savingEditingUser_password_decrypted",
+						SymmCrypSamp.undoIt(preProcessedUser.getLoginPassword()));
 			} else {
-		UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
-		request.setAttribute("savingEditingUser_password_decrypted", preProcessedUser.getLoginPassword());
+				UserEntity preProcessedUser = (UserEntity) request.getAttribute("savingEditingUser");
+				request.setAttribute("savingEditingUser_password_decrypted", preProcessedUser.getLoginPassword());
 			}
 		}
 	%>
@@ -92,7 +93,7 @@
 	
 	
 	<!-- Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
-	<script type="text/javascript">
+	<script type="text/javascript"><!--
 		/* Based on Business and Technicals Rules: */
 		const FULLNAME_MIN_LEN = ${application.entity.UserEntity.FULLNAME_MIN_LEN} ;
 		const FULLNAME_MAX_LEN = ${application.entity.UserEntity.FULLNAME_MAX_LEN} ;
@@ -122,13 +123,13 @@
 				return true;
 			}
 		}
-	</script>
+	--></script>
 	<!-- /FIM Script para validação de campos <input> do usuário na camada mais externa (navegador). -->
 
 
 
 	<!-- Script para cepWebService. -->
-	<script type="text/javascript">
+	<script type="text/javascript"><!--
 		function seekPostalCodeWs() {
 			var postalCode = $("#addrPostalCode").val();
 
@@ -150,13 +151,13 @@
 				}
 			});
 		}
-	</script>
+	--></script>
 	<!-- /FIM Script para cepWebService. -->
 	
 	
 	
 	<!-- Script para mostrar userPicture. -->
-	<script type="text/javascript">
+	<script type="text/javascript"><!--
 		function pictureInjection(elmt, picFromInputFile) {
 			// Ajustar o style do elmt para foto ficar bom visual:
 			document.getElementById(elmt).setAttribute('class', 'userPictureShowerOff userPictureShowerOn');
@@ -181,7 +182,7 @@
 				document.getElementById(elmt).style.backgroundImage = 'url('+ contentFile +')';
 			}
 		}
-	</script>
+	--></script>
 	<!-- /FIM Script mostrar userPicture. -->
 	
 	
@@ -242,7 +243,9 @@
 			enctype="multipart/form-data" onSubmit="javascript:return validarCampos();">
 			
 			<div class="grid-container-user-info">
-				<div class="ga-user-id"><input type="text" id="id" name="id" placeholder="Id..." value="${savingEditingUser.id}" tabindex="-1" readonly></div>
+				<div class="ga-user-id">
+					<input type="text" id="id" name="id" placeholder="Id..." value="${savingEditingUser.id}" tabindex="-1" readonly>
+				</div>
 				<div class="ga-user-pic">
 					
 					<div id="userPictureShower" class="userPictureShowerOff"
@@ -260,16 +263,16 @@
 					<input type="text" id="fullName" name="fullName" placeholder="User's Full Name..." value="${savingEditingUser.fullName}" tabindex="1" required autofocus>
 				</div>
 				<div class="ga-user-name">
-					<input type="text" id="userName" name="userName" placeholder="User's Name..." value="${savingEditingUser.loginName}" tabindex="2" required>
+					<input type="text" id="loginName" name="loginName" placeholder="Login Name..." value="${savingEditingUser.loginName}" tabindex="2" required>
 				</div>
 				<div class="ga-user-pass">
-					<input type="password" id="password" name="password" placeholder="Password..." value="${savingEditingUser_password_decrypted}" tabindex="3" required>
+					<input type="password" id="loginPassword" name="loginPassword" placeholder="Login Password..." value="${savingEditingUser_password_decrypted}" tabindex="3" required>
 				</div>
 				<div class="ga-user-level">
 					<select id="userLevel" name="userLevel" tabindex="4" required>
 					<option value="" disabled selected>Level of user, select one...</option>
-					<!-- FIXME: Aqui ainda há uma melhoria a ser feita. Mesmo após modificar a lista de 'levels'
-					no B.D., esta página está carregando a mesma lista antiga/anterior de 'levels'.  -->
+					<!-- FIXME: Aqui ainda há uma melhoria a ser feita, a nível front-end. Mesmo após modificar a lista
+					de 'levels' no B.D., esta página está carregando a mesma lista antiga/anterior de 'levels'.  -->
 					<c:forEach var="forLevel" items="${UserLevelEntity.getNamesList()}">
 						<option value="${forLevel}" <c:if test="${forLevel == savingEditingUser.level}">selected</c:if>>
 							${forLevel}

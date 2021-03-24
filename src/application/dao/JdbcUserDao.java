@@ -119,9 +119,9 @@ public class JdbcUserDao {
 	
 	
 	
-	public UserEntity seekUserName(String soughtUserName) {
+	public UserEntity seekUserName(String soughtLoginName) {
 		
-		String sqlSeekUserName = "SELECT * FROM users WHERE (user_name = '" + soughtUserName + "');";
+		String sqlSeekUserName = "SELECT * FROM users WHERE (login_name = '" + soughtLoginName + "');";
 		ResultSet rsSeekUserName = null;
 		
 		try {

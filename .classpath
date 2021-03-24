@@ -15,5 +15,6 @@
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/postgresql-42.2.19.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.8.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/my-java-utility-pack-0.4.0-alpha.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
