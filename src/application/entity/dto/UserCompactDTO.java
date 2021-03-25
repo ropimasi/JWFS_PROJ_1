@@ -15,6 +15,7 @@ public class UserCompactDTO {
 	private long id = 0;
 	private String fullName = "";
 	private String loginName = "";
+	/* Intentionally this class has no loginPassword property. */
 	private String level = "";
 	private String pictureBase64 = "";
 	private String pictureContentType = "";
@@ -33,8 +34,7 @@ public class UserCompactDTO {
 	// Overload.
 	public void setId(String strId) {
 		
-		if ((strId != null) && !strId.equalsIgnoreCase("")) {
-			System.out.println();
+		if ( (strId != null) && !strId.equalsIgnoreCase("") ) {
 			
 			try {
 				this.id = Long.parseLong(strId);
@@ -46,9 +46,9 @@ public class UserCompactDTO {
 			
 		}
 		else {
-			/* If Id was not defined (Empty or Null) the 0 value is adopted as default by
-			 * the 'view layer' meaning this object was not stored in project's persistence,
-			 * yet, that is, this object is a 'add new' object. */
+			/* If Id was not defined (Empty or Null), then value 0 is adopted as default by
+			 * the 'view layer', meaning this object was not stored in project's persistence,
+			 * yet, that is, this object is a new object 'to be added'. */
 			this.id = 0;
 		}
 		

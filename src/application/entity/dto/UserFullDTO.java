@@ -12,10 +12,12 @@ import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 public class UserFullDTO {
 	
 	/* Private Class' attributes: */
+	
 	private long id = 0;
 	private String fullName = "";
-	private String userName = "";
-	private String userLevel = "";
+	private String loginName = "";
+	private String level = "";
+	/* Intentionally this class has no loginPassword property. */
 	private String addrPostalCode = "";
 	private String addrFu = "";
 	private String addrCity = "";
@@ -40,9 +42,7 @@ public class UserFullDTO {
 	// Overload.
 	public void setId(String strId) {
 		
-		System.out.println();
-		
-		if ((!strId.trim().equalsIgnoreCase("")) && (!strId.trim().isEmpty()) && (strId != null)) {
+		if ( (strId != null) && !strId.trim().equalsIgnoreCase("") && !strId.trim().isEmpty() ) {
 			
 			try {
 				this.id = Long.parseLong(strId);
@@ -54,9 +54,9 @@ public class UserFullDTO {
 			
 		}
 		else {
-			/* If Id was not defined (Empty or Null) the 0 value is adopted as default by
-			 * the 'view layer' meaning this object was not stored in project's persistence,
-			 * yet, that is, this object is a 'add new' object. */
+			/* If Id was not defined (Empty or Null), then value 0 is adopted as default by
+			 * the 'view layer', meaning this object was not stored in project's persistence,
+			 * yet, that is, this object is a new object 'to be added'. */
 			this.id = 0;
 		}
 		
@@ -72,19 +72,19 @@ public class UserFullDTO {
 	
 	
 	
-	public String getUserName() { return userName; }
+	public String getLoginName() { return loginName; }
 	
 	
 	
-	public void setUserName(String userName) { this.userName = userName; }
+	public void setLoginName(String loginName) { this.loginName = loginName; }
 	
 	
 	
-	public String getUserLevel() { return userLevel; }
+	public String getLevel() { return level; }
 	
 	
 	
-	public void setUserLevel(String userLevel) { this.userLevel = userLevel; }
+	public void setLevel(String level) { this.level = level; }
 	
 	
 	

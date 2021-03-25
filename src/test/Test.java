@@ -2,7 +2,7 @@ package test;
 
 
 import dev.ronaldomarques.myutility.MyUtility;
-import dev.ronaldomarques.myutility.screenprinter.SP;
+import dev.ronaldomarques.myutility.debugger.DP;
 
 
 
@@ -12,15 +12,17 @@ public final class Test {
 		
 		System.out.println("teste lib " + MyUtility.libraryName());
 		
-		SP.pdln("teste pd 1");
+		DP.pdln("teste pd 1");
 		
-		SP.pdOff();
+		DP.pdOff();
 		
-		SP.pdln("teste pd 2");
+		DP.pdln("teste pd 2");
 		
-		SP.pdOn();
+		DP.pdOn();
 		
-		SP.pd("teste pd 3");
+		DP.pdln("teste pd 3");
+		
+		MyUtility.selfPresentation();
 	}
 	
 }

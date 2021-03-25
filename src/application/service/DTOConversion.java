@@ -3,14 +3,15 @@ package application.service;
 
 import application.entity.UserEntity;
 import application.entity.dto.UserCompactDTO;
+import application.entity.dto.UserFullDTO;
 
 
 
-public abstract class DTOConversion {
+public final class DTOConversion {
 	
 	public static UserCompactDTO userCompactDTOFactoryFrom(UserEntity uE) {
 		
-		// No reflexion. Using pattern Factory.
+		// Using pattern Factory.
 		UserCompactDTO returnObj = new UserCompactDTO();
 		returnObj.setId(uE.getId());
 		returnObj.setFullName(uE.getFullName());
@@ -24,10 +25,19 @@ public abstract class DTOConversion {
 	
 	
 	
-	public static void convert(Object oFrom, Object oTo) {
+	public static UserFullDTO userFullDTOFactoryFrom(UserEntity uE) {
 		
-		// Using reflexion.
-		// Further implementation.
+		// Using pattern Factory.
+		UserFullDTO returnObj = new UserFullDTO();
+		returnObj.setId(uE.getId());
+		returnObj.setFullName(uE.getFullName());
+		returnObj.setLoginName(uE.getLoginName());
+		returnObj.setLevel(uE.getLevel());
+		returnObj.setPictureBase64(uE.getPictureBase64String());
+		returnObj.setPictureContentType(uE.getPictureContentType());
+		
+		return returnObj;
+		
 	}
 	
 }
